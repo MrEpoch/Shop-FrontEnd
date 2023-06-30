@@ -3,23 +3,39 @@ import Landing__page from "./components/landing__page";
 import Header from "./components/header";
 import Footer from "./components/footer";
 
+function PackPage({children}: ChildrenProp) {
+    return (
+        <>
+            <Header />
+            {children}
+            <Footer />
+        </>
+    )
+}
+
+
 export default function Router() {
     return (
     <>
         <Routes>
             <Route path="/" element={
-                <>
-                    <Header />
-                    <Landing__page />
-                    <Footer />
-                </>
+                    <PackPage>
+                        <Landing__page/>
+                    </PackPage>
             }
-                children={
-                    <Route path="s" element={
-                        <></>
-                }/>}
              />
+
+             <Route path="/shop" element={
+                <PackPage>
+                    
+                </PackPage>
+             } /> 
         </Routes>
     </>
     )
 }
+
+export interface ChildrenProp {
+  children: React.ReactNode;
+}
+

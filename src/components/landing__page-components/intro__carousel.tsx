@@ -6,11 +6,9 @@ import "./intro__carousel.css";
 import { useEffect } from 'react';
 
 
-export function IntroCarousel() {
+export default function IntroCarousel() {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-    
-
-
+   
     useEffect(() => {
         function scrollNext() {
             if (!emblaApi) return;
