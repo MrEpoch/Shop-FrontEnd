@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-export function Header() {
+export default function Header() {
     return (
         <header className="shop-header">
             <div className="header__logo">
