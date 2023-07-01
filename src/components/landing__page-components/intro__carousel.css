@@ -4,6 +4,7 @@
     position: relative;
     background-color: #fff;
     overflow: hidden;
+    width: 100%;
 }
 
 .landing__page-carousel__container {
@@ -27,7 +28,7 @@
 
 .landing__page-carousal__slide {
     filter: contrast(60%);
-    width: 300px;
+    width: 100%;
     height: 400px;
     flex: 0 0 100%;
     background-size: cover;

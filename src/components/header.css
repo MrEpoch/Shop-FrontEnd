@@ -1,11 +1,10 @@
 .shop-header {
-    background-color: white;
     height: 100px;
     display: flex;
     justify-content: space-between;
     position: relative;
     width: 100%;
-    border-bottom: 10px solid var(--main-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .header__logo {
@@ -14,7 +13,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.header__logo:hover {
+    transform: translateY(3px) scale(1.1);
+    transition: all 0.3s ease-in-out;
 }
 
 .header__logo > img {
@@ -28,7 +32,6 @@
     width: 40%;
     padding: 0 20px;
     justify-content: space-between;
-    background-color: white;
 }
 
 .header__navigation > a {
@@ -49,7 +52,6 @@
     align-items: center;
     justify-content: space-between;
     width: 20%;
-    background-color: white;
     margin-right: 5%;
 }
 
@@ -65,6 +67,10 @@
     background-color: white;
 }
 
+.header__search__container > svg {
+    cursor: pointer;
+}
+
 .header__search__container > input {
     width: auto;
     font-size: 1.1rem;
@@ -73,3 +79,13 @@
     border: none;
 }
 
+.header__user__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+}
+
+.header__user__container > * {
+    cursor: pointer;
+}

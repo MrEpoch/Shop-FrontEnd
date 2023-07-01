@@ -5,10 +5,9 @@ import Slide3 from "../../assets/sandwich-3.jpg";
 import "./intro__carousel.css";
 import { useEffect } from 'react';
 
-
 export default function IntroCarousel() {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-   
+
     useEffect(() => {
         function scrollNext() {
             if (!emblaApi) return;
