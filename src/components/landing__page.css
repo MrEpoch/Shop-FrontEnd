@@ -1,9 +1,9 @@
 .landing__page {
-    width: 100%;
+  width: 100%;
 }
 
 .landing__page > * {
-    margin-left: 5%;
-    margin-right: 5%;
-    width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
 }

@@ -1,9 +1,3 @@
-
-
 export default function Footer() {
-    return (
-        <footer className="shop-footer">
-
-        </footer>
-    )
+  return <footer className="shop-footer"></footer>;
 }
