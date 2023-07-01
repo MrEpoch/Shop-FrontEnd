@@ -1,3 +1,4 @@
+import "./responsive__H_F.css";
 import "./header.css";
 import Logo from "../assets/WoRZX.png";
 import { Link } from "react-router-dom";
@@ -31,7 +32,6 @@ const Header__links = [
 export default function Header() {
 
   const [shortHeader, setShortHeader] = useState<boolean>(false);
-  const [shortHeaderShown, setShortHeaderShown] = useState<boolean>(false);
 
   function checkHeaderSize() {
     if (document.body.clientWidth < 1000) setShortHeader(true)
@@ -54,21 +54,15 @@ export default function Header() {
       <div className="header__navigation">
       {shortHeader ? (
       <>
-            <button onClick={() => setShortHeaderShown(prev => !prev)}>
-                <Menu />
-            </button>
-            <Drawer
-                anchor="right"
-                open={shortHeaderShown}
-                onClose={() => setShortHeaderShown(false)}
-                className="header__menu"
-            >
+                
+                <Menu className="menu__svg"/>
+                <div className="menu__container">
                 {Header__links.map((val, index) => (
-                    <Link onClick={() => setShortHeaderShown(false)} key={index} to={val.path} className="header__link">
+                    <Link key={index} to={val.path} className="header__link__small">
                         {val.name}
                     </Link>
                 ))}
-            </Drawer>
+                </div>
 
         </>
         ) : (

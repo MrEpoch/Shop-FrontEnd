@@ -1,7 +1,7 @@
 .shop-header {
   height: 100px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   position: relative;
   width: 100%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -22,16 +22,16 @@
 }
 
 .header__logo > img {
-  width: auto;
-  height: 80px;
+  width: 110px;
+  height: 90px;
 }
 
 .header__navigation {
   display: flex;
   align-items: center;
-  width: 40%;
+  width: 30%;
   padding: 0 20px;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .header__navigation > a {
@@ -50,20 +50,19 @@
 .header__controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 30%;
+  justify-content: space-around;
+  width: 40%;
   margin-right: 5%;
 }
 
 .header__search__container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   width: 300px;
   height: 40px;
   border: 1px solid black;
   border-radius: 5px;
-  gap: 10px;
   background-color: white;
 }
 
@@ -72,7 +71,6 @@
 }
 
 .header__search__container > input {
-  width: auto;
   font-size: 1.1rem;
   font-weight: 500;
   outline: none;
@@ -93,6 +91,61 @@
 }
 
 .header__user__container > svg:hover {
-  transform: translateY(3px) scale(1.1);
   transition: all 0.3s ease-in-out;
 }
+
+.menu__container {
+    height: auto;
+    width: 100px;
+    position: absolute;
+    display: flex;
+    left: 31%;
+    z-index: 2;
+    background-color: white;
+    top: 65px;
+    border-radius: 5px;
+    visibility: hidden;
+    padding: 15px;
+    justify-content: space-around;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu__svg {
+    z-index: 2;
+    width: 30px!important;
+    height: 30px!important;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu__svg:hover + .menu__container .header__link__small,
+.menu__container:hover .header__link__small {
+    width: 100%;
+    height: 40px;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu__container:hover {
+    visibility: visible;
+}
+
+.menu__svg:hover + .menu__container {
+    visibility: visible;
+    transition: all 0.3s ease-in-out;
+}
+
+.header__link__small {
+    text-decoration: none;
+    color: black;
+    opacity: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+

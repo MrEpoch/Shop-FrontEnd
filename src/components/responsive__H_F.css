@@ -1,0 +1,12 @@
+
+@media (max-width: 1000px) {
+    .header__controls {
+        width: 90%!important;
+    }
+
+    .header__search__container {
+       width: 200px;     
+    }
+}
+
+
