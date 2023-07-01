@@ -4,18 +4,81 @@ import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useState } from "react";
+import { ResizeObserver } from "@juggle/resize-observer";
+import { Drawer } from "@mui/material";
+import Menu from '@mui/icons-material/Notes';
+
+const Header__links = [
+    {
+        name: "Home",
+        path: "/"
+    },
+    {
+        name: "Shop",
+        path: "/shop"
+    },
+    {
+        name: "About",
+        path: "/about"
+    },
+    {
+        name: "Contact",
+        path: "/contact"
+    }
+]; 
 
 export default function Header() {
+
+  const [shortHeader, setShortHeader] = useState<boolean>(false);
+  const [shortHeaderShown, setShortHeaderShown] = useState<boolean>(false);
+
+  function checkHeaderSize() {
+    if (document.body.clientWidth < 1000) setShortHeader(true)
+    else setShortHeader(false);
+    return;
+  }
+
+  new ResizeObserver(() => {
+    checkHeaderSize();
+  })
+    .observe(document.body);
+
+
+
   return (
     <header className="shop-header">
       <Link to="/about" className="header__logo">
         <img src={Logo} alt="WoRZX" />
       </Link>
       <div className="header__navigation">
-        <Link to="/">Home</Link>
-        <Link to="/shop">Shop</Link>
-        <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
+      {shortHeader ? (
+      <>
+            <button onClick={() => setShortHeaderShown(prev => !prev)}>
+                <Menu />
+            </button>
+            <Drawer
+                anchor="right"
+                open={shortHeaderShown}
+                onClose={() => setShortHeaderShown(false)}
+                className="header__menu"
+            >
+                {Header__links.map((val, index) => (
+                    <Link onClick={() => setShortHeaderShown(false)} key={index} to={val.path} className="header__link">
+                        {val.name}
+                    </Link>
+                ))}
+            </Drawer>
+
+        </>
+        ) : (
+            Header__links.map((val, index) => {
+                return (
+                    <Link key={index} to={val.path} className="header__link">{val.name}</Link>
+                )
+            })
+        )
+      }
       </div>
       <div className="header__controls">
         <div className="header__search__container">
