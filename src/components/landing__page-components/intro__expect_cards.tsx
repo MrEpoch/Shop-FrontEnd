@@ -2,6 +2,7 @@ import EggIcon from "@mui/icons-material/Egg";
 import StarIcon from "@mui/icons-material/Star";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import "./intro__expect_cards.css";
+import { useTheme } from "../../router";
 
 const CardInfo = [
   {
@@ -25,13 +26,16 @@ const CardInfo = [
 ];
 
 export default function ExpectIntro() {
+
+  const { theme } = useTheme();
+
   return (
     <div className="landing-expect__container">
       <h2 className="landing-expect__title">New Look, Classic Taste</h2>
       <div className="landing-expect__cards">
         {CardInfo.map((card, index) => {
           return (
-            <div className="landing-expect__card" key={index}>
+            <div className={`landing-expect__card ${theme ? "dark__theme__LIGHTER" : ""}`} key={index}>
               <div className="landing-expect__card__icon">{card.icon}</div>
               <h3 className="landing-expect__card__title">{card.title}</h3>
               <p className="landing-expect__card__description">

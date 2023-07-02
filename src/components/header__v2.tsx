@@ -3,6 +3,8 @@ import Logo from "../assets/WoRZX.png";
 import { useState } from "react";
 import "./Header__2.css";
 import { useTheme } from "../router";
+import LightModeIcon from '@mui/icons-material/LightMode';
+import NightlightIcon from '@mui/icons-material/Nightlight';
 
 export default function Header__2() {
 
@@ -51,6 +53,11 @@ export default function Header__2() {
             </div>
 
             <div className="navbar-end">
+                <div className="navbar-item">
+                    <button className={`button ${theme ? "dark__theme" : ""}`} onClick={() => setTheme(prev => !prev)}>
+                        {theme ? <LightModeIcon/> : <NightlightIcon />}
+                    </button>
+                </div>
                 <div className="field has-addons">
                     <div className="control">
                         <input className="input" type="text" placeholder="Cheesy waren" />
