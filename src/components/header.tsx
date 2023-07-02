@@ -7,7 +7,6 @@ import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useState } from "react";
 import { ResizeObserver } from "@juggle/resize-observer";
-import { Drawer } from "@mui/material";
 import Menu from '@mui/icons-material/Notes';
 
 const Header__links = [
@@ -49,7 +48,7 @@ export default function Header() {
   return (
     <header className="shop-header">
       <Link to="/about" className="header__logo">
-        <img src={Logo} alt="WoRZX" />
+        <img src={Logo} alt="WoRZX"  />
       </Link>
       <div className="header__navigation">
       {shortHeader ? (

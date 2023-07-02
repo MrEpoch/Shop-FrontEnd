@@ -11,6 +11,7 @@
   margin-left: 5%;
   cursor: pointer;
   display: flex;
+  width: 20%;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease-in-out;
@@ -23,6 +24,7 @@
 
 .header__logo > img {
   width: 110px;
+  object-fit: cover;
   height: 90px;
 }
 
@@ -30,6 +32,7 @@
   display: flex;
   align-items: center;
   width: 30%;
+  gap: 10px;
   padding: 0 20px;
   justify-content: space-around;
 }
@@ -51,7 +54,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 40%;
+  width: 50%;
   margin-right: 5%;
 }
 
@@ -68,12 +71,14 @@
 
 .header__search__container > svg {
   cursor: pointer;
+  width: 20%;
 }
 
 .header__search__container > input {
   font-size: 1.1rem;
   font-weight: 500;
   outline: none;
+  width: 80%;
   background-color: transparent;
   border: none;
 }
@@ -99,7 +104,7 @@
     width: 100px;
     position: absolute;
     display: flex;
-    left: 31%;
+    left: 20%;
     z-index: 2;
     background-color: white;
     top: 65px;

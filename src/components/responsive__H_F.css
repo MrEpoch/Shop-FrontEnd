@@ -5,7 +5,26 @@
     }
 
     .header__search__container {
-       width: 200px;     
+       width: 200px!important;     
+    }
+}
+
+@media (max-width: 650px) {
+
+    .header__controls {
+        width: 60%!important;
+     }
+
+    .header__navigation {
+        width: 20%!important;
+    }
+
+    .header__search__container {
+        width: 60%!important;     
+    }
+
+    .header__logo {
+        width: 20%!important;
     }
 }
 
