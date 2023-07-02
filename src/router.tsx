@@ -3,14 +3,32 @@ import Landing__page from "./components/landing__page";
 import Footer from "./components/footer";
 import About__page from "./components/about__page";
 import Header__2 from "./components/header__v2";
+import { createContext, useContext, useState } from "react";
+import { ChildrenProp, ThemeType } from "./Types";
+
+const ThemeContext = createContext<object | ThemeType>({});
+
+export function useTheme() {
+    const value = useContext(ThemeContext);
+    if (value === null) return {};
+    return value;
+}
 
 function PackPage({ children }: ChildrenProp) {
+  
+  const [theme, setTheme] = useState<boolean>(true);
+
+  const value = {
+    theme,
+    setTheme
+  };
+
   return (
-    <>
+    <ThemeContext.Provider value={value}>
       <Header__2 />
       {children}
       <Footer />
-    </>
+    </ThemeContext.Provider>
   );
 }
 
@@ -47,6 +65,4 @@ export default function Router() {
   );
 }
 
-export interface ChildrenProp {
-  children: React.ReactNode;
-}
+

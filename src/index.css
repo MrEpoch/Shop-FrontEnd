@@ -8,6 +8,9 @@
 
 :root {
   --main-color: #ffde09;
+  --system-color: #f1f1f1;
+  --dark-theme: #1a1a1a;
+  --dark-theme-hover: #3a3a3a;
 }
 
 body {
@@ -36,3 +39,32 @@ body::-webkit-scrollbar-track {
   background-color: var(--system-color);
 }
 
+.dark__theme__container {
+    background-color: #1a1a1a!important;
+    color: white!important;
+}
+
+.dark__theme {
+    background-color: #1a1a1a!important;
+    color: white!important;
+}
+
+.dark__theme:hover {
+    background-color: #1a1a1a!important;
+    color: white!important;
+}
+
+.dark__theme:hover,
+.dark__theme:focus,
+.dark__theme:active,
+.dark__theme:target,
+.dark__theme:hover {
+    background-color: var(--dark-theme-hover)!important;
+    color: white!important;
+}
+
+.dark__theme__NO_BORDER {
+    background-color: var(--dark-theme)!important;
+    color: white!important;
+    border: none!important;
+}

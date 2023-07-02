@@ -3,9 +3,14 @@
 }
 
 .navbar {
-    padding: 20px;
+    padding: 15px;
     display: grid;
     align-items: center;
+}
+
+.navbar img:hover {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
 }
 
 @media (max-width: 1024px) {
@@ -14,7 +19,7 @@
     }
 
     .navbar-end {
-        padding: 20px;
+        padding: 15px;
     }
 }
 
@@ -44,4 +49,4 @@
 .logo__style {
     max-height: 5rem!important;
     width: auto;
-}
+

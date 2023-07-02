@@ -1,36 +1,19 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/WoRZX.png";
 import { useState } from "react";
-import { ResizeObserver } from "@juggle/resize-observer";
 import "./Header__2.css";
-
-const Header__links = [
-    {
-        name: "Home",
-        path: "/"
-    },
-    {
-        name: "Shop",
-        path: "/shop"
-    },
-    {
-        name: "About",
-        path: "/about"
-    },
-    {
-        name: "Contact",
-        path: "/contact"
-    }
-]
+import { useTheme } from "../router";
 
 export default function Header__2() {
+
+  const { theme, setTheme } = useTheme();
 
   const [shortHeader, setShortHeader] = useState<boolean>(false);
 
     return (
-        <nav className="navbar" role="navigation" aria-label="main navigation" style={{ width: "100%" }}>
+        <nav className={`navbar ${theme ? "dark__theme__container" : ""}`} role="navigation" aria-label="main navigation" style={{ width: "100%" }}>
           <div className="navbar-brand">
-            <Link to="/about" className="navbar-item">
+            <Link to="/about" className={`navbar-item ${theme ? "dark__theme" : ""}`}>
               <img src={Logo} alt="WoRZX" className="logo__style"  />
             </Link>
 
@@ -41,30 +24,26 @@ export default function Header__2() {
             </button>
           </div>
 
-          <div id="navbarBasicExample" className={`navbar-menu ${shortHeader && "is-active"}`} >
-            <div className="navbar-start">
-              <Link to="/" className="navbar-item">
+          <div id="navbarBasicExample" className={`navbar-menu ${shortHeader ? "is-active" : ""} ${theme ? "dark__theme__container" : ""}`} >
+            <div className={`navbar-start ${theme ? "dark__theme" : ""}`}>
+              <Link to="/" className={`navbar-item ${theme ? "dark__theme" : ""}`}>
                 Home
               </Link>
 
-              <Link to="/shop" className="navbar-item">
+              <Link to="/shop" className={`navbar-item ${theme ? "dark__theme" : ""}`}>
                 Shop
               </Link>
 
               <div className="navbar-item has-dropdown is-hoverable">
-                <div className="navbar-link">
+                <div className={`navbar-link ${theme ? "dark__theme" : ""}`} tabIndex={0}>
                   More
                 </div>
 
-                <div className="navbar-dropdown">
-                  <Link to="/about" className="navbar-item">
-                    About
-                  </Link>
-                  <Link to="/contact" className="navbar-item">
-                    Contact
-                  </Link>
-                  <hr className="navbar-divider"/>
-                  <Link to="/report" className="navbar-item">
+                <div className={`navbar-dropdown ${theme ? "dark__theme__NO_BORDER" : ""}`}>
+                  {["About", "Contact"].map((item, index) => (
+                    <Link to={`/${item.toLowerCase()}`} key={index} className={`navbar-item ${theme ? "dark__theme" : ""}`}>{item}</Link>
+                  ))}
+                  <Link to="/report" className={`navbar-item ${theme ? "dark__theme" : ""}`}>
                     Report an issue
                   </Link>
                 </div>
