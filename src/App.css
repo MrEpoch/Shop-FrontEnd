@@ -4,4 +4,9 @@
   align-items: center;
   justify-content: center;
   min-height: auto;
+  width: 100%;
+}
+
+#root > * {
+    width: 100%;
 }

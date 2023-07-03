@@ -6,6 +6,7 @@ import Header__2 from "./components/Header__2";
 import Contact__page from "./components/contact__page";
 import { createContext, useContext, useMemo, useState } from "react";
 import { ChildrenProp, ThemeType } from "./Types";
+import Shop__page from "./components/shop__page";
 
 const ThemeContext = createContext<ThemeType | object>({});
 
@@ -51,7 +52,7 @@ export default function Router() {
           }
         />
 
-        <Route path="/shop" element={<PackPage><h1>Shop</h1></PackPage>} />
+        <Route path="/shop" element={<PackPage><Shop__page /></PackPage>} />
 
         <Route
           path="/about"
