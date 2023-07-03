@@ -1,5 +1,5 @@
 import { ThemeType } from "../Types";
-import { useTheme } from "../router";
+import { useTheme } from "../App.tsx";
 import "./shop__page.css";
 import Shop__intro__ad from "./shop__page-components/Intro__ad_sale__shop.tsx";
 import Shop__main__products from "./shop__page-components/Main__products__shop.tsx";

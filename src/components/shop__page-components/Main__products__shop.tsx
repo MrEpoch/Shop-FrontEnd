@@ -1,10 +1,13 @@
 import "./Main__products__shop.css";
+import Rating from '@mui/material/Rating';
+import TempImage from "../../assets/sandwich-2.jpg";
+import Badge from '@mui/material/Badge';
 
 const temp__products = [
     {
         name: "Chicken Sandwich",
         description: "Our favourite classic chicken sandwich",
-        image: "sandwich-1.png",
+        image: TempImage,
         price: 5.99,
         rating: 4.5,
         numReviews: 10,
@@ -30,8 +33,9 @@ export default function Main__products() {
                                 <h4>{product.name}</h4>
                                 <p>{product.description}</p>
                                 <div className="shop__main__products__products__container__product__info__rating">
-                                    <span>{product.rating} stars</span>
-                                    <span>{product.numReviews} reviews</span>
+                                    <Badge badgeContent={product.numReviews} color="primary">
+                                        <Rating className="ratingItem" name="read-only" precision={0.5} value={product.rating} readOnly />
+                                    </Badge>
                                 </div>
                                 <h5>${product.price}</h5>
                                 <button className="button">Add to cart</button>

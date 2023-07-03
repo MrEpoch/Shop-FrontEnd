@@ -2,7 +2,7 @@ import EggIcon from "@mui/icons-material/Egg";
 import StarIcon from "@mui/icons-material/Star";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import "./intro__expect_cards.css";
-import { useTheme } from "../../router";
+import { useTheme } from "../../App";
 import { ThemeType } from "../../Types";
 
 const CardInfo = [

@@ -2,7 +2,7 @@ import "./main__popular_sandwiches.css";
 import Sandwich1 from "../../assets/sandwich-1.jpg";
 import Sandwich2 from "../../assets/sandwich-2.jpg";
 import Sandwich3 from "../../assets/sandwich-3.jpg";
-import { useTheme } from "../../router";
+import { useTheme } from "../../App";
 import { ThemeType } from "../../Types";
 
 export const sandwichData = [

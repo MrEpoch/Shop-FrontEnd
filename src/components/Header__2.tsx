@@ -3,7 +3,7 @@ import Logo from "../assets/WoRZX.png";
 import LogoDark from "../assets/WoRZX-dark.png";
 import { useState } from "react";
 import "./Header__2.css";
-import { useTheme } from "../router";
+import { useTheme } from "../App";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import PersonIcon from '@mui/icons-material/Person';
@@ -40,6 +40,13 @@ export default function Header__2() {
                 Shop
               </Link>
 
+              <button className={`button header__navbar-end__button ${theme ? "dark__theme__NO_BORDER" : ""}`} onClick={() => {
+                        localStorage.setItem("theme-ed06fa4efa4dd9b42b0063ff84e77ddd937f367f68e2a490aca139bfd884590e0f820a124e477562c643ddb6523489db9ed2b005183f9c859990cd89f72c1f74", JSON.stringify(!theme));
+                        setTheme(prev => !prev)
+                    }}>
+                        {theme ? <LightModeIcon/> : <NightlightIcon />}
+              </button>
+
               <div className="navbar-item has-dropdown is-hoverable">
                 <div className={`navbar-link ${theme ? "dark__theme" : ""}`} tabIndex={0}>
                   More
@@ -54,12 +61,7 @@ export default function Header__2() {
             </div>
 
             <div className="navbar-end">
-                    <button className={`button header__navbar-end__button ${theme ? "dark__theme__NO_BORDER" : ""}`} onClick={() => {
-                        localStorage.setItem("theme-ed06fa4efa4dd9b42b0063ff84e77ddd937f367f68e2a490aca139bfd884590e0f820a124e477562c643ddb6523489db9ed2b005183f9c859990cd89f72c1f74", JSON.stringify(!theme));
-                        setTheme(prev => !prev)
-                    }}>
-                        {theme ? <LightModeIcon/> : <NightlightIcon />}
-                    </button>
+                    
                 <div className="field has-addons">
                     <div className="control">
                         <input className="input" type="text" placeholder="Cheesy waren" />

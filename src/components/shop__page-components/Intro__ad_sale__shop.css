@@ -3,10 +3,11 @@
     align-items: center;
     justify-content: space-around;
     gap: 2rem;
+    margin-top: 3rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
     padding: 2rem;
     width: 100%;
     background-color: #006060;
-    box-shadow: 0 0 10px dimgray;
 }
 
 .shop__intro__ad__container__text {
@@ -31,6 +32,13 @@
     width: 160px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     font-size: 1.2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.shop__intro__ad__container__text button:hover {
+    cursor: pointer;
+    transform: scale(1.05) translateY(3px);
+    transition: all 0.3s ease-in-out;
 }
 
 .shop__intro__ad__container__image {

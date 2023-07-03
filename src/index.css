@@ -53,24 +53,21 @@ body::-webkit-scrollbar-track {
 .dark__theme {
     background-color: var(--dark-theme)!important;
     color: white!important;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.dark__theme__hover {
+    background-color: var(--dark-theme-hover)!important;
+    color: white!important;
 }
 
 .dark__theme:hover {
-    background-color: var(--dark-theme)!important;
-    color: white!important;
+    transition: all 0.3s ease-in-out;
 }
 
 .dark__theme__LIGHTER {
     background-color: var(--dark-theme-light)!important;
-    color: white!important;
-}
-
-.dark__theme:hover,
-.dark__theme:focus,
-.dark__theme:active,
-.dark__theme:target,
-.dark__theme:hover {
-    background-color: var(--dark-theme-hover)!important;
     color: white!important;
 }
 

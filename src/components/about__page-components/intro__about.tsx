@@ -1,6 +1,6 @@
 import "./intro__about.css";
 import SandwichPicture from "../../assets/sandwich-4.png";
-import { useTheme } from "../../router";
+import { useTheme } from "../../App";
 import { ThemeType } from "../../Types";
 import { Link } from "react-router-dom";
 
