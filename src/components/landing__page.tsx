@@ -4,10 +4,11 @@ import IntroCarousel from "./landing__page-components/intro__carousel";
 import IntroExpect from "./landing__page-components/intro__expect_cards";
 import MainPopular from "./landing__page-components/main__popular_sandwiches.tsx";
 import { useTheme } from "../router.tsx";
+import { ThemeType } from "../Types.tsx";
 
 export default function Landing__page() {
 
-  const { theme } = useTheme();
+  const { theme } = useTheme() as ThemeType;
 
   return (
     <section id="page" className={`landing__page ${theme ? "dark__theme__PURE_BLACK" : ""}`}>

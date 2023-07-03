@@ -1,0 +1,9 @@
+.shop-about__page {
+  width: 100%;
+}
+
+.shop-about__page > * {
+  margin-left: 5%!important;
+  margin-right: 5%!important;
+  width: 90%!important;
+}

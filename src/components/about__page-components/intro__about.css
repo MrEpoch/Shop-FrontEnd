@@ -1,0 +1,129 @@
+.intro__about {
+    display: flex;
+    width: 100%;
+    margin-top: 10%;
+    min-height: 100%;
+    margin-bottom: 10%;
+}
+
+.intro__about__text {
+    min-height: 100%;
+    display: flex;
+    width: 100%;
+    gap: 3rem;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.intro__about__text h1 {
+    font-size: 3.5rem;
+    font-weight: 500;
+}
+
+.intro__about__text > .intro__about__buttons {
+    display: flex;
+    gap: 2rem;
+}
+
+.intro__about__buttons button {
+    background-color: var(--main-color);
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.intro__about__buttons button:hover {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.05) translateY(3px);
+}
+
+.intro__about__text h1 > span {
+    color: var(--main-color);
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.intro__about__text p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-top: 1rem;
+}
+
+.intro__about__image {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+}
+
+.intro__about__image img {
+    max-width: 600px;
+    object-fit: cover;
+    height: auto;
+    filter: contrast(92%) drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
+    margin-right: 10%;
+    animation: moveInLeft 5s ease-out infinite;
+}
+
+.dark__sandwich {
+    filter: grayscale(15%)!important;
+}
+
+@keyframes moveInLeft {
+    from {
+        transform: translateY(-7px);
+    }
+
+    50% {
+        transform: translateY(7px);
+    }
+
+    to {
+        transform: translateY(-7px);
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .intro__about__text {
+        gap: 2rem;
+    }
+
+    .intro__about__text h1 {
+        font-size: 2.5rem;
+    }
+
+    .intro__about__text p {
+        font-size: 1rem;
+    }
+
+    .intro__about__image img {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 900px) {
+    .intro__about {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .intro__about__image img {
+        margin: 0;
+    }
+
+    .intro__about__image {
+        align-items: flex-start!important;
+        justify-content: center;
+    }
+
+    .intro__about__text {
+        margin-top: 10%;
+        gap: 3rem;
+        margin-bottom: 10%;
+        justify-content: center;
+    }
+}

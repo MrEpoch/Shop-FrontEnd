@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/WoRZX.png";
+import LogoDark from "../assets/WoRZX-dark.png";
 import { useState } from "react";
 import "./Header__2.css";
 import { useTheme } from "../router";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NightlightIcon from '@mui/icons-material/Nightlight';
+import PersonIcon from '@mui/icons-material/Person';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { ThemeType } from "../Types";
 
 export default function Header__2() {
 
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme() as ThemeType;
 
   const [shortHeader, setShortHeader] = useState<boolean>(false);
 
@@ -16,7 +20,7 @@ export default function Header__2() {
         <nav className={`navbar ${theme ? "dark__theme__container" : ""}`} role="navigation" aria-label="main navigation" style={{ width: "100%" }}>
           <div className="navbar-brand">
             <Link to="/about" className={`navbar-item ${theme ? "dark__theme" : ""}`}>
-              <img src={Logo} alt="WoRZX" className="logo__style"  />
+              <img src={theme ? LogoDark : Logo} alt="WoRZX" className="logo__style"  />
             </Link>
 
             <button onClick={() => setShortHeader(prev => !prev)} role="button"  className={`navbar-burger ${shortHeader && "is-active"}`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -53,11 +57,12 @@ export default function Header__2() {
             </div>
 
             <div className="navbar-end">
-                <div className="navbar-item">
-                    <button className={`button ${theme ? "dark__theme" : ""}`} onClick={() => setTheme(prev => !prev)}>
+                    <button className={`button header__navbar-end__button ${theme ? "dark__theme__NO_BORDER" : ""}`} onClick={() => {
+                        localStorage.setItem("theme-ed06fa4efa4dd9b42b0063ff84e77ddd937f367f68e2a490aca139bfd884590e0f820a124e477562c643ddb6523489db9ed2b005183f9c859990cd89f72c1f74", JSON.stringify(!theme));
+                        setTheme(prev => !prev)
+                    }}>
                         {theme ? <LightModeIcon/> : <NightlightIcon />}
                     </button>
-                </div>
                 <div className="field has-addons">
                     <div className="control">
                         <input className="input" type="text" placeholder="Cheesy waren" />
@@ -67,6 +72,12 @@ export default function Header__2() {
                             Search
                         </button>
                     </div>
+                </div>
+                <div className={`navbar-item ${theme ? "dark__theme" : ""}`}>
+                    <PersonIcon />
+                </div>
+                <div className={`navbar-item ${theme ? "dark__theme" : ""}`}>
+                    <ShoppingCartIcon />
                 </div>
             </div>
             </div>

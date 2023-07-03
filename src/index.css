@@ -9,9 +9,14 @@
 :root {
   --main-color: #ffde09;
   --system-color: #0f1319;
-  --dark-theme: #1a1a1a;
+  --dark-theme: #212121;
   --dark-theme-hover: #3a3a3a;
   --dark-theme-light: #1b1b1b;
+  --dark-theme-dark: #0f0f0f;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -41,17 +46,17 @@ body::-webkit-scrollbar-track {
 }
 
 .dark__theme__container {
-    background-color: #1a1a1a!important;
+    background-color: var(--dark-theme)!important;
     color: white!important;
 }
 
 .dark__theme {
-    background-color: #1a1a1a!important;
+    background-color: var(--dark-theme)!important;
     color: white!important;
 }
 
 .dark__theme:hover {
-    background-color: #1a1a1a!important;
+    background-color: var(--dark-theme)!important;
     color: white!important;
 }
 
@@ -76,6 +81,6 @@ body::-webkit-scrollbar-track {
 }
 
 .dark__theme__PURE_BLACK {
-    background-color: black!important;
+    background-color: var(--dark-theme-dark)!important;
     color: white!important;
 }
