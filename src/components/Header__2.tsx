@@ -49,9 +49,6 @@ export default function Header__2() {
                   {["About", "Contact"].map((item, index) => (
                     <Link to={`/${item.toLowerCase()}`} key={index} className={`navbar-item ${theme ? "dark__theme" : ""}`}>{item}</Link>
                   ))}
-                  <Link to="/report" className={`navbar-item ${theme ? "dark__theme" : ""}`}>
-                    Report an issue
-                  </Link>
                 </div>
               </div>
             </div>

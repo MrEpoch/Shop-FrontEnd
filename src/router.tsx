@@ -3,6 +3,7 @@ import Landing__page from "./components/landing__page";
 import Footer from "./components/footer";
 import About__page from "./components/about__page";
 import Header__2 from "./components/Header__2";
+import Contact__page from "./components/contact__page";
 import { createContext, useContext, useMemo, useState } from "react";
 import { ChildrenProp, ThemeType } from "./Types";
 
@@ -60,10 +61,8 @@ export default function Router() {
             </PackPage>
           }
         />
-        <Route path="/contact" element={<PackPage><h1>Contact</h1></PackPage>} />
+        <Route path="/contact" element={<PackPage><Contact__page /></PackPage>} />
         
-        <Route path="/report" element={<PackPage><h1>Report</h1></PackPage>} />
-
         </Routes>
         
     </>

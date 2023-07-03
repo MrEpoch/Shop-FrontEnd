@@ -7,7 +7,7 @@ import Classic from "../../assets/sandwich-styled.png";
 export default function Slogans() {
     return (
         <div className="about__slogans">
-            <div id="fresh" className="about__slogans__info">
+            <div className="about__slogans__info">
                 <div className="about__slogans__info__text">
                     <h2 className="about__slogans__info__title">Fresh Ingredients</h2>
                     <p className="about__slogans__info__description">
@@ -19,7 +19,7 @@ export default function Slogans() {
                 </div>
                 <img id="rotate-right" src={Fresh} alt="Fresh ingredients" />
             </div>
-            <div id="taste" className="about__slogans__info">
+            <div className="about__slogans__info">
                 <div className="about__slogans__info__text">
                     <h2 className="about__slogans__info__title">Classic taste</h2>
                     <p className="about__slogans__info__description">
@@ -32,7 +32,7 @@ export default function Slogans() {
                 </div>
                 <img id="rotate-left" src={Classic} alt="Fresh ingredients" />
             </div>
-            <div id="service" className="about__slogans__info">
+            <div className="about__slogans__info">
                 <div className="about__slogans__info__text">
                     <h2 className="about__slogans__info__title">We care about you</h2>
                     <p className="about__slogans__info__description">

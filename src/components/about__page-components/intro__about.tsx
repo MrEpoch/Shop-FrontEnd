@@ -2,7 +2,7 @@ import "./intro__about.css";
 import SandwichPicture from "../../assets/sandwich-4.png";
 import { useTheme } from "../../router";
 import { ThemeType } from "../../Types";
-
+import { Link } from "react-router-dom";
 
 export default function Intro__about() {
 
@@ -18,8 +18,8 @@ export default function Intro__about() {
                   We take pride in our food. Our traditional classic sandwiches are brought to modern times with us to elevate standards of taste and your enjoyment.                      
                 </p>
                 <div className="intro__about__buttons">
-                    <button className="button">Contact</button>
-                    <button className="button">Shop</button>
+                    <Link to="/contact" className="button">Contact</Link>
+                    <Link to="/shop" className="button">Shop</Link>
                 </div>
             </div>
             <div className="intro__about__image">

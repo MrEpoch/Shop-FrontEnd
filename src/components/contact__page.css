@@ -1,0 +1,14 @@
+.contact__page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.contact__page > * {
+  margin-left: 5%!important;
+  margin-right: 5%!important;
+  width: 90%!important;
+}
+

@@ -25,15 +25,16 @@
     gap: 2rem;
 }
 
-.intro__about__buttons button {
+.intro__about__buttons > a {
     background-color: var(--main-color);
     font-size: 1.2rem;
+    border: none;
     font-weight: 700;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.intro__about__buttons button:hover {
+.intro__about__buttons > a:hover {
     transition: all 0.3s ease-in-out;
     transform: scale(1.05) translateY(3px);
 }
