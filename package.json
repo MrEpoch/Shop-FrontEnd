@@ -15,10 +15,13 @@
     "@juggle/resize-observer": "^3.4.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.6",
+    "axios": "^1.4.0",
     "bulma": "^0.9.4",
+    "crypto-js": "^4.1.1",
     "embla-carousel-react": "^8.0.0-rc07",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
     "react-router-dom": "^6.14.0"
   },
   "devDependencies": {

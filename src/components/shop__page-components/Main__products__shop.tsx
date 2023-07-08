@@ -1,31 +1,35 @@
 import "./Main__products__shop.css";
 import Rating from '@mui/material/Rating';
-import TempImage from "../../assets/sandwich-2.jpg";
 import Badge from '@mui/material/Badge';
+import { useTheme } from "../../App";
+import { ThemeType } from "../../Types";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { GetSandwiches } from "../../API_requests";
 
-const temp__products = [
-    {
-        name: "Chicken Sandwich",
-        description: "Our favourite classic chicken sandwich",
-        image: TempImage,
-        price: 5.99,
-        rating: 4.5,
-        numReviews: 10,
-        countInStock: 10
-    }
-];
+export const queryClient = new QueryClient();
 
 export default function Main__products() {
+    
+    const {isLoading, error, data} = useQuery<any[], Error>('sandwiches', GetSandwiches, {
+        staleTime: 1000 * 60 * 60,
+    });
+
+    const { theme } = useTheme() as ThemeType;
+    
+    if (error) return <div>Something went wrong...</div>
+
     return (
+    <QueryClientProvider client={queryClient}>
         <div className="shop__main__products">
             <div className="shop__main__products__filters">
 
             </div>
             <div className="shop__main__products__products">
                 <h3>Popular sandwiches</h3>
+                {isLoading ? <div>Loading...</div> : (
                 <div className="shop__main__products__products__container">
-                    {temp__products.map((product, index) => (
-                        <div className="shop__main__products__products__container__product" key={index}>
+                    {data && data.map((product, index: number) => (
+                        <div className={`shop__main__products__products__container__product ${theme ? "dark__theme" : ""}`} key={index}>
                             <div className="shop__main__products__products__container__product__image">
                                 <img src={product.image} alt={product.name} />
                             </div>
@@ -41,9 +45,11 @@ export default function Main__products() {
                                 <button className="button">Add to cart</button>
                             </div>
                         </div>
-                    ))}           
+                    ))}         
                 </div>
+                )}
             </div>
         </div>
+    </QueryClientProvider>
     )
 }

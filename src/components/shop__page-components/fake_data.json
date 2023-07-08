@@ -1,0 +1,49 @@
+{
+    "sandwiches": [
+        {
+            "name": "Turkey Club Sandwich",
+            "description": "A classic turkey club sandwich with layers of roasted turkey, bacon, lettuce, tomato, and mayo",
+            "image": "https://images.unsplash.com/photo-1553909489-cd47e0907980?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1925&q=80",
+            "price": 8.99,
+            "rating": 4.4,
+            "numReviews": 12,
+            "countInStock": 8
+        },
+        {
+            "name": "BLT Sandwich",
+            "description": "A delicious BLT sandwich with crispy bacon, lettuce, tomato, and mayo on toasted bread",
+            "image": "https://images.unsplash.com/photo-1475090169767-40ed8d18f67d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80",
+            "price": 6.99,
+            "rating": 4.3,
+            "numReviews": 9,
+            "countInStock": 5
+        },
+        {
+            "name": "Grilled Cheese Sandwich",
+            "description": "A classic grilled cheese sandwich made with melted cheese between buttery, toasted bread slices",
+            "image": "https://images.unsplash.com/photo-1550507992-eb63ffee0847?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+            "price": 5.49,
+            "rating": 4.6,
+            "numReviews": 15,
+            "countInStock": 10
+        },
+        {
+            "name": "Reuben Sandwich",
+            "description": "A classic Reuben sandwich with corned beef, sauerkraut, Swiss cheese, and Russian dressing on rye bread",
+            "image": "https://images.unsplash.com/photo-1567234669003-dce7a7a88821?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+            "price": 9.99,
+            "rating": 4.8,
+            "numReviews": 20,
+            "countInStock": 6
+        },
+        {
+            "name": "Tuna Salad Sandwich",
+            "description": "A satisfying tuna salad sandwich made with flaked tuna, mayo, celery, and pickles on whole wheat bread",
+            "image": "https://images.unsplash.com/photo-1558985250-27a406d64cb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "price": 6.99,
+            "rating": 4.5,
+            "numReviews": 14,
+            "countInStock": 12
+        }
+    ]
+}
