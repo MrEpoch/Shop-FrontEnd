@@ -1,5 +1,5 @@
 import "./footer.css";
-import { useTheme } from "../App.tsx";
+import { useTheme } from "../Theme_context";
 import { ThemeType } from "../Types.tsx";
 
 export default function Footer() {

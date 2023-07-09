@@ -1,7 +1,7 @@
 import "./about__page.css";
 import Intro__about from "./about__page-components/intro__about";
 import Main__slogans__about from "./about__page-components/main__slogans__about";
-import { useTheme } from "../App.tsx";
+import { useTheme } from "../Theme_context";
 import { ThemeType } from "../Types";
 
 export default function About__page() {

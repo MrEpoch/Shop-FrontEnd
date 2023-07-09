@@ -1,13 +1,60 @@
+.sshop__intro__ad {
+  --s: 36px; /* control the size */
+  --c1: #000;
+  --c2: #d2d3d5;
+  --c3: #727c7e;
+  
+  --g1: conic-gradient(at calc(250%/3) calc(50%/3),var(--c2) 60deg,#0000 0 300deg,var(--c1) 0);
+  --g2: conic-gradient(at calc(50%/3) 50%,#0000 75%,var(--c1) 0);
+  --g3: conic-gradient(at calc(100%/3) 50%,#0000 75%,var(--c2) 0);
+  --g4: conic-gradient(from 59deg at calc(200%/3) calc(249%/9),var(--c3) 61deg,#0000 62deg);
+  --g5: conic-gradient(from 60deg at 50% calc(250%/3),#f1f1f1 /*4th color*/ 60deg,var(--c1) 0 120deg,#0000 0);
+  --_p: calc(9*tan(30deg)*var(--s)); /* if you don't see the pattern replace tan(30deg) with 0.577 */
+  background:
+    var(--g1) calc(-1*var(--s)) 0,var(--g1) calc(2*var(--s)) var(--_p),
+    var(--g2),var(--g2) calc(3*var(--s)) var(--_p),
+    var(--g3),var(--g3) calc(3*var(--s)) var(--_p),
+    var(--g4),var(--g4) calc(3*var(--s)) var(--_p),
+    var(--g5) calc(3*var(--s)) 0,var(--g5) 0 var(--_p) var(--c3);
+  background-size: calc(6*var(--s)) calc(2*var(--_p))
+}
+
+.light_ad {
+  --s: 200px; /* control the size */
+  --c1: #ededed;
+  --c2: #bebfc1;
+  --c3: #dcdcdc;
+
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.9);
+  background:
+    repeating-conic-gradient(from 30deg,#0000 0 120deg,var(--c3) 0 180deg) 
+     calc(.5*var(--s)) calc(.5*var(--s)*0.577),
+    repeating-conic-gradient(from 30deg,var(--c1) 0 60deg,var(--c2) 0 120deg,var(--c3) 0 180deg);
+  background-size: var(--s) calc(var(--s)*0.577);
+}
+
+.dark_ad {
+  --s: 200px; /* control the size */
+  --c1: #1d1d1d;
+  --c2: #4e4f51;
+  --c3: #3c3c3c;
+  
+  background:
+    repeating-conic-gradient(from 30deg,#0000 0 120deg,var(--c3) 0 180deg) 
+     calc(.5*var(--s)) calc(.5*var(--s)*0.577),
+    repeating-conic-gradient(from 30deg,var(--c1) 0 60deg,var(--c2) 0 120deg,var(--c3) 0 180deg);
+  background-size: var(--s) calc(var(--s)*0.577);
+}
+
+
 .shop__intro__ad {
     display: flex;
     align-items: center;
     justify-content: space-around;
     gap: 2rem;
     margin-top: 3rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-    padding: 2rem;
+    padding: 6rem;
     width: 100%;
-    background-color: #006060;
 }
 
 .shop__intro__ad__container__text {
@@ -20,8 +67,10 @@
 .shop__intro__ad__container__text h2 {
     font-size: 2.5rem;
     font-weight: 500;
-    font-family:'Courier New', Courier, monospace;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 900;
+    letter-spacing: 0.1rem;
+    word-spacing: 0.2rem;
 }
 
 .shop__intro__ad__container__text button {

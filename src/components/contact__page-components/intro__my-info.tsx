@@ -1,5 +1,5 @@
 import "./intro__my-info.css";
-import { useTheme } from "../../App";
+import { useTheme } from "../../Theme_context";
 import { ThemeType } from "../../Types";
 import Sandwich from "../../assets/sandwich-2.jpg";
 

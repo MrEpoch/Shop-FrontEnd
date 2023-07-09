@@ -3,7 +3,7 @@ import "./landing__page-components/responsive__landing.css";
 import IntroCarousel from "./landing__page-components/intro__carousel";
 import IntroExpect from "./landing__page-components/intro__expect_cards";
 import MainPopular from "./landing__page-components/main__popular_sandwiches.tsx";
-import { useTheme } from "../App.tsx";
+import { useTheme } from "../Theme_context";
 import { ThemeType } from "../Types.tsx";
 
 export default function Landing__page() {

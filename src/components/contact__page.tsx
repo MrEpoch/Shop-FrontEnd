@@ -1,6 +1,6 @@
 import "./contact__page.css";
 import Intro__MyInfo from "./contact__page-components/intro__my-info.tsx";
-import { useTheme } from "../App.tsx";
+import { useTheme } from "../Theme_context";
 import { ThemeType } from "../Types.tsx";
 
 export default function Contact__page() {

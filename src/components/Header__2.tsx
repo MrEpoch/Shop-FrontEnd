@@ -3,7 +3,7 @@ import Logo from "../assets/WoRZX.png";
 import LogoDark from "../assets/WoRZX-dark.png";
 import { useState } from "react";
 import "./Header__2.css";
-import { useTheme } from "../App";
+import { useTheme } from "../Theme_context";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import PersonIcon from '@mui/icons-material/Person';
@@ -75,7 +75,7 @@ export default function Header__2() {
                 <div className={`navbar-item ${theme ? "dark__theme" : ""}`}>
                     <PersonIcon />
                 </div>
-                <div className={`navbar-item ${theme ? "dark__theme" : ""}`}>
+                <div onClick={() => { console.log("foobar") }} className={`navbar-item ${theme ? "dark__theme" : ""}`}>
                     <ShoppingCartIcon />
                 </div>
             </div>
