@@ -7,12 +7,13 @@ import { useTheme } from "../Theme_context";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import PersonIcon from '@mui/icons-material/Person';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { ThemeType } from "../Types";
+import Cart__main from "./cart-components/Cart_main";
 
 export default function Header__2() {
 
   const { theme, setTheme } = useTheme() as ThemeType;
+
 
   const [shortHeader, setShortHeader] = useState<boolean>(false);
 
@@ -73,10 +74,10 @@ export default function Header__2() {
                     </div>
                 </div>
                 <div className={`navbar-item ${theme ? "dark__theme" : ""}`}>
-                    <PersonIcon />
+                    <PersonIcon className="clickable" />
                 </div>
-                <div onClick={() => { console.log("foobar") }} className={`navbar-item ${theme ? "dark__theme" : ""}`}>
-                    <ShoppingCartIcon />
+                <div className={`navbar-item ${theme ? "dark__theme" : ""}`}>
+                    <Cart__main />                    
                 </div>
             </div>
             </div>

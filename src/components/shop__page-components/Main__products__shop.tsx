@@ -45,7 +45,7 @@ export default function Main__products() {
                                     </Badge>
                                 </div>
                                 <h5>${product.price}</h5>
-                                <button onClick={() => Add_to_cart(product.id, product.name, product.image)} className="button">Add to cart</button>
+                                <button onClick={() => Add_to_cart(product.id, product.name, product.image, product.price)} className="button">Add to cart</button>
                             </div>
                         </div>
                     ))}         

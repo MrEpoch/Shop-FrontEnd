@@ -1,0 +1,45 @@
+
+.dark__modal__header {
+    background-color: #1a1a1a!important;
+    color: #bbb!important;
+    border: none!important;
+}
+
+.dark__modal__header p {
+    color: #bbb!important;
+}
+
+.dark__modal__body {
+    color: #fff!important;
+    background-color: #2a2a2a!important;
+}
+
+.shop__cart__modal__items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    height: auto;
+    padding: 0 10px;
+}
+
+.shop__cart__modal__item {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    height: 200px;
+}
+
+.background_style_modal {
+}
+
+.shop__cart__modal__item__image {
+    height: auto;
+}
+
+.shop__cart__modal__item__image img {
+    width: 100px;
+    max-height: unset!important;
+    height: 100px;
+    object-fit: cover;
+}

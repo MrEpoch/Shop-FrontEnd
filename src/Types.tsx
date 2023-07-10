@@ -8,17 +8,18 @@ export type ThemeType = {
 }
 
 export type CartType = {
-    cart: Array<CartProductType>,
-    setCart: React.Dispatch<React.SetStateAction<CartProductType[]>>
     Remove_from_cart: (sandwichId: string) => void,
-    Add_to_cart: (sandwichId: string, sandwichName: string, sandwichImage: string) => Array<CartProductType>
+    Add_to_cart: (sandwichId: string, sandwichName: string, sandwichImage: string, sandwichPrice: string) => Array<CartProductType>
+    Get_cart_length: () => number,
+    Get_cart: () => Array<CartProductType>
 }
 
 export type CartProductType = {
     id: string,
     name: string,
     image: string,
-    quantity: number
+    quantity: number,
+    price: string
 }
 
 export type SandwichType = {

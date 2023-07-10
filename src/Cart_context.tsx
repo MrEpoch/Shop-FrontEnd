@@ -14,7 +14,7 @@ export default function Cart_context({ children } : ChildrenProp) {
    
    const [cart, setCart] = useState<CartProductType[]>([]);
 
-   function Add_to_cart(sandwichId: string, sandwichName: string, sandwichImage: string) {
+   function Add_to_cart(sandwichId: string, sandwichName: string, sandwichImage: string, sandwichPrice: string) {
         const newCart = [...cart];
         const itemCheck = newCart.find((item: CartProductType) => item.id === sandwichId);
         if (itemCheck && Object.keys(itemCheck).includes("quantity") && itemCheck.quantity) {
@@ -25,7 +25,8 @@ export default function Cart_context({ children } : ChildrenProp) {
                 id: sandwichId,
                 name: sandwichName,
                 image: sandwichImage,
-                quantity: 1
+                quantity: 1,
+                price: sandwichPrice
             });
         }
         setCart(newCart);
@@ -36,16 +37,24 @@ export default function Cart_context({ children } : ChildrenProp) {
         setCart((prev: CartProductType[]) => prev.filter((item: CartProductType) => item.id !== sandwichId));
    }
 
+   function Get_cart_length() {
+        return cart.length;
+    }
+    
+    function Get_cart() {
+        return cart;
+    }
+
    const value: CartType = {
-       cart,
-       setCart,
        Remove_from_cart,
-       Add_to_cart
-  }; 
-  return (
+       Add_to_cart,
+       Get_cart_length,
+       Get_cart
+   }; 
+   return (
     <CartContext.Provider value={value}>
         {children}
     </CartContext.Provider>
-  );
+   );
 }
 
