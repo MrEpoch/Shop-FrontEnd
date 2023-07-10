@@ -27,7 +27,9 @@ export default function Sandwich_context({ children } : ChildrenProp) {
     }, [data]);
     
     const value = {
-      sandwich 
+      sandwich,
+      isLoading,
+      error
     }; 
     return (
         <SandwichContext.Provider value={value}>

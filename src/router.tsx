@@ -6,8 +6,8 @@ import Header__2 from "./components/Header__2";
 import Contact__page from "./components/contact__page";
 import { ChildrenProp } from "./Types";
 import Shop__page from "./components/shop__page";
-import { useQuery } from "react-query";
-import { GetSandwiches } from "./API_requests";
+import { useSandwich } from "./Sandwich_context";
+import Shop_item__page from "./components/shop__item__page";
 
 function PackPage({ children }: ChildrenProp) {
   return (
@@ -20,16 +20,22 @@ function PackPage({ children }: ChildrenProp) {
 }
 
 function Check_Validity_Page({ children }: ChildrenProp) {
+    
+    const { sandwich } = useSandwich();
 
     const { id } = useParams();
 
-    const {isLoading, error, data} = useQuery<any[], Error>('sandwiches', GetSandwiches, {
-        staleTime: 1000 * 60 * 60,
-    });
+    if (sandwich.find(item => item.id === id)) {
+        return (
+            <>
+                {children}
+            </>
+        )
+    }
   
   return (
     <>
-      {children}
+      ERROR 404
     </>
   );
 }
@@ -59,6 +65,8 @@ export default function Router() {
         />
         <Route path="/contact" element={<PackPage><Contact__page /></PackPage>} />
         
+        <Route path="/shop/:id" element={<Check_Validity_Page><Shop_item__page /></Check_Validity_Page>} />
+
         </Routes>
         
     </>
