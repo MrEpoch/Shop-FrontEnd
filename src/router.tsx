@@ -65,7 +65,12 @@ export default function Router() {
         />
         <Route path="/contact" element={<PackPage><Contact__page /></PackPage>} />
         
-        <Route path="/shop/:id" element={<Check_Validity_Page><Shop_item__page /></Check_Validity_Page>} />
+        <Route path="/shop/:id" element={
+            <Check_Validity_Page>
+                <PackPage>
+                    <Shop_item__page />
+                </PackPage>
+            </Check_Validity_Page>} />
 
         </Routes>
         
