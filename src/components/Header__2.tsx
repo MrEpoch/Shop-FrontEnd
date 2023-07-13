@@ -64,7 +64,7 @@ export default function Header__2() {
             <div className="navbar-end">
                     
                 <div className="field has-addons">
-                    <div className="control">
+                    <div className={`control ${theme ? "DARK_INPUTS" : ""}`}>
                         <input className="input" type="text" placeholder="Cheesy waren" />
                     </div>
                     <div className="control">
@@ -73,12 +73,12 @@ export default function Header__2() {
                         </button>
                     </div>
                 </div>
-                <div className={`navbar-item ${theme ? "dark__theme" : ""}`}>
-                    <PersonIcon className="clickable" />
-                </div>
                 <Link to="/login" className={`navbar-item ${theme ? "dark__theme" : ""}`}>
-                    <Cart__main />                    
+                    <PersonIcon className="clickable" />
                 </Link>
+                <div className={`navbar-item ${theme ? "dark__theme" : ""}`}>
+                    <Cart__main />                    
+                </div>
             </div>
             </div>
         </nav>

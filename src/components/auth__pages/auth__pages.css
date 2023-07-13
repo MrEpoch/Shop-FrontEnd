@@ -11,8 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
-    max-width: 500px;
+    min-height: 100%;
     width: 100%;
     padding: 2rem;
     justify-self: center;
@@ -24,14 +23,51 @@
     flex-direction: column;
     gap: 2rem;
     border-radius: 10px;
+    max-width: 500px;
     width: 100%;
     padding: 3rem;
     height: auto;
     background-color: #fff;
     display: flex;
+    color: #000!important;
 }
+
+.login__page__form * {
+    text-shadow: 0 0 0 #999;
+    color: inherit!important;
+}
+
+
 
 .error__auth {
    margin-top: 1rem; 
    margin-bottom: 1rem;
+}
+
+.shop__auth-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    color: #000!important;
+    margin-top: 1rem;
+}
+
+.shop__auth-link:hover {
+    text-decoration: underline;
+}
+
+.shop__auth-link__DARK {
+    color: #fff!important;
+}
+
+.DARK_INPUTS input {
+    border: none;
+    background-color: #333!important;
+    color: #fff!important;
+}
+
+.DARK_INPUTS input::placeholder {
+    color: #aaa!important;
 }

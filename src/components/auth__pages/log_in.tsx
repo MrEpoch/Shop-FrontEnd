@@ -1,9 +1,12 @@
 import "./auth__pages.css";
 import { useRef, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LogIn as LogInAPI } from "../../API_requests.ts";
 import Alert from "@mui/material/Alert";
 import CircularProgress from '@mui/material/CircularProgress';
+import { useAccount } from "../../Account_context.tsx";
+import { ThemeType } from "../../Types.tsx";
+import { useTheme } from "../../Theme_context.tsx";
 
 export default function LogIn() {
     
@@ -12,6 +15,9 @@ export default function LogIn() {
 
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
+
+    const { Fill_user_account } = useAccount();
+    const { theme } = useTheme() as ThemeType;
 
     const navigate = useNavigate();
 
@@ -31,7 +37,8 @@ export default function LogIn() {
         if (passwordRef.current.value.length < 10) { setLoading(false); setError("Password cannot be shorter than 10 characters"); return; }
 
         try {
-            await LogInAPI(nameRef.current.value, passwordRef.current.value);
+            const user = await LogInAPI(nameRef.current.value, passwordRef.current.value);
+            await Fill_user_account(user);
             navigate("/")
             return
         } catch (e) {
@@ -44,14 +51,14 @@ export default function LogIn() {
     return (
         <>
         {loading ? (<div className="loading__container"><CircularProgress /></div>) : 
-            (<section className="login__page">
+            (<section className={`login__page ${theme ? "dark__theme__LIGHTER DARK_INPUTS" : ""}`}>
                 {error !== "" ? (<Alert severity="error" 
                     onClose={() => {
                         setError("");
                     }}
                     style={{ position: "absolute", top: 33 }}
                 className="error__auth">{error}</Alert>) : (<></>)}
-                <div className="login__page__form">
+                <div className={`login__page__form ${theme ? "dark__theme__container" : ""}`}>
                     <h2 className="title">Log In</h2>
                     <div className="field">
                         <label className="label">Name</label>
@@ -67,6 +74,7 @@ export default function LogIn() {
                     </div>
                     <button className="button is-primary" onClick={LogIn}>Log In</button>
                 </div>
+                <Link className={`shop__auth-link ${theme ? "shop__auth-link__DARK" : "w"}`} to="/signup">Don't have an account?</Link>
             </section>
             )
         }

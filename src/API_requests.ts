@@ -10,10 +10,10 @@ export const request_sandwiches_url = "http://localhost:4527/server";
 
 export const LogIn = async (name: string, password: string) => {
     try {
-       const response = await axios.post(request_auth_url + "/login", { name, password });
-       const encrypted_refresh_token = CryptoJS.AES.encrypt(response.data.REFRESH_TOKEN, import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY).toString();
+       const { data } = await axios.post(request_auth_url + "/login", { name, password });
+       const encrypted_refresh_token = CryptoJS.AES.encrypt(data.REFRESH_TOKEN, import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY).toString();
        localStorage.setItem(import.meta.env.VITE_REFRESH_TOKEN_NAME, encrypted_refresh_token);
-       return;
+       return data.user;
     } catch (e) {
         console.log(e);
         throw new Error("error")
@@ -47,7 +47,7 @@ export const CreateAccount = async (name: string, password: string, email: strin
         });
 
         localStorage.setItem(import.meta.env.VITE_REFRESH_TOKEN_NAME, data.REFRESH_TOKEN);
-        return data;
+        return data.user;
     } catch (e) {
         throw new Error("error")
     }
@@ -56,8 +56,10 @@ export const CreateAccount = async (name: string, password: string, email: strin
 export const GetAccount = async () => {
     try {
         const refresh_token = CryptoJS.AES.decrypt(localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME), import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY).toString(CryptoJS.enc.Utf8);
-        const access_token = await axios.get(request_auth_url + "/sandwiches/account", { headers: { Authorization: `Bearer ${refresh_token}` }})
-        return access_token.data;
+        const access_token = await axios.post(request_auth_url + "/token/", { token: refresh_token })
+
+        const { data } = await axios.get(request_sandwiches_url + "/sandwiches/user", { headers: { Authorization: `Bearer ${access_token.data.ACCESS_TOKEN}` }})
+        return data;
     } catch (e) {
         throw new Error("error")
     }

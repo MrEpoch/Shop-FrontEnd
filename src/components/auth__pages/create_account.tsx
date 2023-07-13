@@ -2,6 +2,10 @@ import { useRef, useState } from "react";
 import { CircularProgress, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { CreateAccount } from "../../API_requests.ts";
+import { useAccount } from "../../Account_context.tsx";
+import { Link } from "react-router-dom";
+import { useTheme } from "../../Theme_context.tsx";
+import { ThemeType } from "../../Types.tsx";
 
 export default function Create_account() {
     
@@ -19,6 +23,9 @@ export default function Create_account() {
     const [error, setError] = useState<string>("");
 
     const navigate = useNavigate();
+    
+    const { Fill_user_account } = useAccount();
+    const { theme } = useTheme() as ThemeType;
 
     async function New_account() {
         setError("");
@@ -45,7 +52,8 @@ export default function Create_account() {
         if (countryRef.current.value.trim() === "") { setLoading(false); setError("Country cannot be empty"); return; }
 
         try {
-            await CreateAccount(nameRef.current.value, passwordRef.current.value, emailRef.current.value, parseInt(phoneRef.current.value), addressRef.current.value, cityRef.current.value, parseInt(postalRef.current.value), countryRef.current.value);
+            const user = await CreateAccount(nameRef.current.value, passwordRef.current.value, emailRef.current.value, parseInt(phoneRef.current.value), addressRef.current.value, cityRef.current.value, parseInt(postalRef.current.value), countryRef.current.value);
+            await Fill_user_account(user);
             navigate("/");
         } catch (e) { 
             setLoading(false);
@@ -57,9 +65,9 @@ export default function Create_account() {
     return (
         <>
         {loading ? (<div className="loading__container"><CircularProgress /></div>) : 
-            (<section className="login__page">
+            (<section className={`login__page ${theme ? "dark__theme__LIGHTER DARK_INPUTS" : ""}`}>
                 {error !== "" ? (<Alert severity="error" onClose={() => setError("")} style={{ position: "absolute", top: 33 }} className="error__auth">{error}</Alert>) : (<></>)}
-                <div className="login__page__form">
+                <div className={`login__page__form ${theme ? "dark__theme__container" : ""}`}>
                     <h1 className="title">Create Account</h1>
                     <div className="field">
                         <label className="label">Full Name</label>
@@ -88,7 +96,7 @@ export default function Create_account() {
                     <div className="field">
                         <label className="label">Phone</label>
                         <div className="control">
-                            <input ref={passwordRef} className="input" type="number" placeholder="Phone" />
+                            <input ref={passwordRef} className="input" type="text" placeholder="Phone" />
                         </div>
                     </div>
                     <div className="field">
@@ -117,6 +125,7 @@ export default function Create_account() {
                     </div>
                     <button className="button is-primary" onClick={New_account}>Sign up</button>
                 </div>
+                <Link className={`shop__auth-link ${theme ? "shop__auth-link__DARK" : ""}`} to="/login">Already have account?</Link>
             </section>
             )
         }

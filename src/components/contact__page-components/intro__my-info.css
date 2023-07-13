@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    height: 100svh;
+    height: 100%;
     margin-bottom: 5%;
 }
 
@@ -20,8 +20,15 @@
 }
 
 .contact__intro__info__card__image {
-    width: 40%;
-    min-height: 100%;
+    max-width: 500px;
+    width: 100%;
+    min-height: auto;
+}
+
+.contact__intro__info__card__image img {
+    max-width: 500px!important;
+    width: 100%;
+    height: auto;
 }
 
 .contact__intro__info__card__text {
@@ -60,7 +67,6 @@
     }
 
     .contact__intro__info__card__image {
-        width: auto;
         align-self: center;
         height: auto;
     }
