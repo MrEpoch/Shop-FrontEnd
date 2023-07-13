@@ -23,41 +23,28 @@ function PackPage({ children }: ChildrenProp) {
 }
 
 function Check_Validity_Page({ children }: ChildrenProp) {
-    
-    const { sandwich } = useSandwich();
+  const { sandwich } = useSandwich();
 
-    const { id } = useParams();
+  const { id } = useParams();
 
-    if (sandwich.find((item: any) => item.id === id)) {
-        return (
-            <>
-                {children}
-            </>
-        )
-    }
-  
-  return (
-    <>
-      ERROR 404
-    </>
-  );
+  if (sandwich.find((item: any) => item.id === id)) {
+    return <>{children}</>;
+  }
+
+  return <>ERROR 404</>;
 }
 
 function Check_token({ children }: ChildrenProp) {
-    const token = localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME);
-    const navigate = useNavigate();
+  const token = localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        navigate("/login");
-    }, [navigate]);
-    
-    if (token) {
-        return (
-            <>
-                {children}
-            </>
-        )
-    }
+  useEffect(() => {
+    navigate("/login");
+  }, [navigate]);
+
+  if (token) {
+    return <>{children}</>;
+  }
 }
 
 export default function Router() {
@@ -73,7 +60,14 @@ export default function Router() {
           }
         />
 
-        <Route path="/shop" element={<PackPage><Shop__page /></PackPage>} />
+        <Route
+          path="/shop"
+          element={
+            <PackPage>
+              <Shop__page />
+            </PackPage>
+          }
+        />
 
         <Route
           path="/about"
@@ -83,28 +77,53 @@ export default function Router() {
             </PackPage>
           }
         />
-        <Route path="/contact" element={<PackPage><Contact__page /></PackPage>} />
-        
-        <Route path="/shop/:id" element={
-            <Check_Validity_Page>
-                <PackPage>
-                    <Shop_item__page />
-                </PackPage>
-            </Check_Validity_Page>} />
-
-        <Route path="/login" element={<PackPage><Login__page /></PackPage>} />
-        <Route path="/signup" element={<PackPage><Sign_up/></PackPage>} />
-        <Route path="/user" element={
-            <Check_token>
-                <PackPage>
-                    <h1>USER PAGE</h1>
-                </PackPage>
-            </Check_token>} 
+        <Route
+          path="/contact"
+          element={
+            <PackPage>
+              <Contact__page />
+            </PackPage>
+          }
         />
 
-        </Routes>
-        
+        <Route
+          path="/shop/:id"
+          element={
+            <Check_Validity_Page>
+              <PackPage>
+                <Shop_item__page />
+              </PackPage>
+            </Check_Validity_Page>
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <PackPage>
+              <Login__page />
+            </PackPage>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <PackPage>
+              <Sign_up />
+            </PackPage>
+          }
+        />
+        <Route
+          path="/user"
+          element={
+            <Check_token>
+              <PackPage>
+                <h1>USER PAGE</h1>
+              </PackPage>
+            </Check_token>
+          }
+        />
+      </Routes>
     </>
   );
 }
-

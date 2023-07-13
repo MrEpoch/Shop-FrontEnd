@@ -9,20 +9,19 @@ import Sandwich_context from "./Sandwich_context";
 import Account_context from "./Account_context";
 
 function App() {
-
   return (
     <Theme_context>
-        <QueryClientProvider client={queryClient}>
-            <Account_context>
-                <Sandwich_context>
-                    <Cart_context>
-                      <BrowserRouter>
-                        <Router />
-                      </BrowserRouter>
-                    </Cart_context>
-                </Sandwich_context>
-            </Account_context>
-        </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <Account_context>
+          <Sandwich_context>
+            <Cart_context>
+              <BrowserRouter>
+                <Router />
+              </BrowserRouter>
+            </Cart_context>
+          </Sandwich_context>
+        </Account_context>
+      </QueryClientProvider>
     </Theme_context>
   );
 }

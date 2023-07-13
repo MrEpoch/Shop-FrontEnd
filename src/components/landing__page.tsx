@@ -7,11 +7,13 @@ import { useTheme } from "../Theme_context";
 import { ThemeType } from "../Types.tsx";
 
 export default function Landing__page() {
-
   const { theme } = useTheme() as ThemeType;
 
   return (
-    <section id="page" className={`landing__page ${theme ? "dark__theme__PURE_BLACK" : ""}`}>
+    <section
+      id="page"
+      className={`landing__page ${theme ? "dark__theme__PURE_BLACK" : ""}`}
+    >
       <IntroCarousel />
       <IntroExpect />
       <MainPopular />

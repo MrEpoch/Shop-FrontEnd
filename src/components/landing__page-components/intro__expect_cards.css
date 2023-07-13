@@ -40,23 +40,22 @@
 }
 
 @media (max-width: 1050px) {
-    .landing-expect__card {
-        width: 250px;
-        font-size: 0.8rem;
-        height: 200px;
-        padding: 25px;
-    }
+  .landing-expect__card {
+    width: 250px;
+    font-size: 0.8rem;
+    height: 200px;
+    padding: 25px;
+  }
 
-    .landing-expect__card__title {
-        font-size: 1rem!important;
-    }
+  .landing-expect__card__title {
+    font-size: 1rem !important;
+  }
 
-    .landing-expect__card__icon > svg {
-        width: 25px!important;
-        height: 25px!important;
-    }
+  .landing-expect__card__icon > svg {
+    width: 25px !important;
+    height: 25px !important;
+  }
 }
-
 
 .landing-expect__card__icon {
   display: flex;

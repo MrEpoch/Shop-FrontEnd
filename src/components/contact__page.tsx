@@ -4,12 +4,13 @@ import { useTheme } from "../Theme_context";
 import { ThemeType } from "../Types.tsx";
 
 export default function Contact__page() {
-    
-    const { theme } = useTheme() as ThemeType;
+  const { theme } = useTheme() as ThemeType;
 
-    return (
-        <section className={`contact__page ${theme ? "dark__theme__PURE_BLACK" : ""}`}>
-            <Intro__MyInfo />
-        </section>
-    )
+  return (
+    <section
+      className={`contact__page ${theme ? "dark__theme__PURE_BLACK" : ""}`}
+    >
+      <Intro__MyInfo />
+    </section>
+  );
 }

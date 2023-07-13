@@ -1,73 +1,71 @@
 .loading__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
-    position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
 }
 
 .login__page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-    width: 100%;
-    padding: 2rem;
-    justify-self: center;
-    align-self: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  width: 100%;
+  padding: 2rem;
+  justify-self: center;
+  align-self: center;
+  flex-direction: column;
 }
 
 .login__page__form {
-    flex-direction: column;
-    gap: 2rem;
-    border-radius: 10px;
-    max-width: 500px;
-    width: 100%;
-    padding: 3rem;
-    height: auto;
-    background-color: #fff;
-    display: flex;
-    color: #000!important;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+  padding: 3rem;
+  height: auto;
+  background-color: #fff;
+  display: flex;
+  color: #000 !important;
 }
 
 .login__page__form * {
-    text-shadow: 0 0 0 #999;
-    color: inherit!important;
+  text-shadow: 0 0 0 #999;
+  color: inherit !important;
 }
 
-
-
 .error__auth {
-   margin-top: 1rem; 
-   margin-bottom: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .shop__auth-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    text-decoration: none;
-    color: #000!important;
-    margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+  color: #000 !important;
+  margin-top: 1rem;
 }
 
 .shop__auth-link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .shop__auth-link__DARK {
-    color: #fff!important;
+  color: #fff !important;
 }
 
 .DARK_INPUTS input {
-    border: none;
-    background-color: #333!important;
-    color: #fff!important;
+  border: none;
+  background-color: #333 !important;
+  color: #fff !important;
 }
 
 .DARK_INPUTS input::placeholder {
-    color: #aaa!important;
+  color: #aaa !important;
 }

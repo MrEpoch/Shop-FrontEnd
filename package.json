@@ -20,6 +20,8 @@
     "bulma": "^0.9.4",
     "crypto-js": "^4.1.1",
     "embla-carousel-react": "^8.0.0-rc07",
+    "libphonenumber-js": "^1.10.37",
+    "postcode-validator": "^3.8.12",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",

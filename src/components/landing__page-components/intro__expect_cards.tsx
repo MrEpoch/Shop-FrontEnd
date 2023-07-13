@@ -27,7 +27,6 @@ const CardInfo = [
 ];
 
 export default function ExpectIntro() {
-
   const { theme } = useTheme() as ThemeType;
 
   return (
@@ -36,7 +35,12 @@ export default function ExpectIntro() {
       <div className="landing-expect__cards">
         {CardInfo.map((card, index) => {
           return (
-            <div className={`landing-expect__card ${theme ? "dark__theme__LIGHTER" : ""}`} key={index}>
+            <div
+              className={`landing-expect__card ${
+                theme ? "dark__theme__LIGHTER" : ""
+              }`}
+              key={index}
+            >
               <div className="landing-expect__card__icon">{card.icon}</div>
               <h3 className="landing-expect__card__title">{card.title}</h3>
               <p className="landing-expect__card__description">

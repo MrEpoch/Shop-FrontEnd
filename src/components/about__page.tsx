@@ -8,9 +8,11 @@ export default function About__page() {
   const { theme } = useTheme() as ThemeType;
 
   return (
-    <section className={`shop-about__page ${theme ? "dark__theme__PURE_BLACK" : ""}`}>
-        <Intro__about />
-        <Main__slogans__about />
+    <section
+      className={`shop-about__page ${theme ? "dark__theme__PURE_BLACK" : ""}`}
+    >
+      <Intro__about />
+      <Main__slogans__about />
     </section>
   );
 }

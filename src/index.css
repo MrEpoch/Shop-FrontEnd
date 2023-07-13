@@ -16,13 +16,13 @@
 }
 
 html {
-    line-height: 1.15;
-    height: 100%;
-    webkit-text-size-adjust: 100%;
-    tab-size: 4;
-    overflow-y: scroll;
-    background-color: var(--system-color);
-    scroll-behavior: smooth; 
+  line-height: 1.15;
+  height: 100%;
+  webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  overflow-y: scroll;
+  background-color: var(--system-color);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -32,16 +32,15 @@ body {
 }
 
 #root {
-    min-height: 100vh;
-    display:grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
 }
 
 #root > * {
-    width: 100%;
+  width: 100%;
 }
-
 
 body::-webkit-scrollbar {
   width: 0.3rem;
@@ -56,37 +55,37 @@ body::-webkit-scrollbar-track {
 }
 
 .dark__theme__container {
-    background-color: var(--dark-theme)!important;
-    color: white!important;
+  background-color: var(--dark-theme) !important;
+  color: white !important;
 }
 
 .dark__theme {
-    background-color: var(--dark-theme)!important;
-    color: white!important;
-    transition: all 0.3s ease-in-out;
+  background-color: var(--dark-theme) !important;
+  color: white !important;
+  transition: all 0.3s ease-in-out;
 }
 
 .dark__theme__hover {
-    background-color: var(--dark-theme-hover)!important;
-    color: white!important;
+  background-color: var(--dark-theme-hover) !important;
+  color: white !important;
 }
 
 .dark__theme:hover {
-    transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .dark__theme__LIGHTER {
-    background-color: var(--dark-theme-light)!important;
-    color: white!important;
+  background-color: var(--dark-theme-light) !important;
+  color: white !important;
 }
 
 .dark__theme__NO_BORDER {
-    background-color: var(--dark-theme)!important;
-    color: white!important;
-    border: none!important;
+  background-color: var(--dark-theme) !important;
+  color: white !important;
+  border: none !important;
 }
 
 .dark__theme__PURE_BLACK {
-    background-color: var(--dark-theme-dark)!important;
-    color: white!important;
+  background-color: var(--dark-theme-dark) !important;
+  color: white !important;
 }

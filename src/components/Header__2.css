@@ -1,69 +1,68 @@
 .BackGroundMain {
-    background-color: var(--main-color)!important;
+  background-color: var(--main-color) !important;
 }
 
 .navbar {
-    padding: 15px;
-    display: grid;
-    align-items: center;
+  padding: 15px;
+  display: grid;
+  align-items: center;
 }
 
 .header__navbar-end__button {
-    align-self: center;
-    margin: 0 15px;
+  align-self: center;
+  margin: 0 15px;
 }
 
 .logo__style {
-    transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .logo__style:hover {
-    transition: all 0.3s ease-in-out;
-    transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.1);
 }
 
 @media (max-width: 1024px) {
-    .navbar-burger {
-        align-self: center;
-    }
+  .navbar-burger {
+    align-self: center;
+  }
 
-    .navbar-end {
-        padding: 15px;
-    }
+  .navbar-end {
+    padding: 15px;
+  }
 }
 
 @media (max-width: 1000px) {
-    .navbar-start {
-        display: unset!important;
-    }
+  .navbar-start {
+    display: unset !important;
+  }
 }
 
 .navbar-item {
-    font-size: 1.2rem;
-    font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .navbar-start {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
 }
 
 .navbar-end {
-    align-self: center;
-    display: flex;
+  align-self: center;
+  display: flex;
 }
 
-
 .navbar-end > .navbar-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: unset;
-    border-radius: 5px;
-    margin: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: unset;
+  border-radius: 5px;
+  margin: 0 15px;
 }
 
 .logo__style {
-    max-height: 5rem!important;
-    width: auto;
+  max-height: 5rem !important;
+  width: auto;
 }

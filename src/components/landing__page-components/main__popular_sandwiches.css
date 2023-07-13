@@ -1,104 +1,102 @@
 .shop-popular__sandwiches {
-    margin-top: 5%;
-    width: 100%;
-    height: auto;
-    margin-bottom: 10%;
+  margin-top: 5%;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10%;
 }
 
 .shop-popular__sandwiches > h1 {
-    font-size: 2.5rem;
-    font-weight: 500;
-    margin-bottom: 30px;
-    margin-top: 20px;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+  margin-top: 20px;
 }
 
 .shop-popular__sandwiches > h1 > span {
-    color: var(--main-color);
-    font-weight: 900;
-    background-color: black;
-    padding: 10px;
-    border-radius: 10px;
+  color: var(--main-color);
+  font-weight: 900;
+  background-color: black;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .shop-popular__sandwiches__container {
-    width: 100%;
-    height: auto;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  width: 100%;
+  height: auto;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .shop-popular__sandwiches__container > .card {
-    width: 400px;
-    cursor: pointer;
-    height: auto;
-    position: relative;
+  width: 400px;
+  cursor: pointer;
+  height: auto;
+  position: relative;
 }
 
 @media (max-width: 400px) {
-    .shop-popular__sandwiches__container > .card {
-        width: 300px;
-    }
+  .shop-popular__sandwiches__container > .card {
+    width: 300px;
+  }
 
-    .card__price {
-        gap: 4px!important;
-
-    }
+  .card__price {
+    gap: 4px !important;
+  }
 }
 
 .card__price {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    visibility: hidden;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  visibility: hidden;
+  align-items: center;
 }
 
 .card__price button {
-    background-color: var(--main-color)!important;
+  background-color: var(--main-color) !important;
 }
 
 .card__price > * {
-    background-color: white;
-    padding: 10px;
-    width: 50%;
-    white-space: nowrap;
-    font-size: 1.3rem;
-    border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+  width: 50%;
+  white-space: nowrap;
+  font-size: 1.3rem;
+  border-radius: 10px;
 }
 
 .shop-popular__sandwiches__container > .card:hover img {
-    filter: brightness(0.5);
+  filter: brightness(0.5);
 }
 
 .shop-popular__sandwiches__container > .card:hover .card-content {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .shop-popular__sandwiches__container > .card:hover .card__price {
-    visibility: visible;
+  visibility: visible;
 }
 
 .shop-popular__sandwiches__container img {
-    border-radius: 10px;
-    transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
 .shop-popular__sandwiches__container .card-content {
-    position: absolute;
-    bottom: 10px;
-    display: flex;
-    width: 100%;
-    justify-content: center;
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .shop-popular__sandwiches__container .card-content > * {
-    background-color: white;
-    padding: 10px;
-    white-space: nowrap;
-    font-size: 1.3rem;
-    border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+  white-space: nowrap;
+  font-size: 1.3rem;
+  border-radius: 10px;
 }
-

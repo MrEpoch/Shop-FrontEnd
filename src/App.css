@@ -8,9 +8,9 @@
 }
 
 #root > * {
-    width: 100%;
+  width: 100%;
 }
 
 .clickable {
-    cursor: pointer;
+  cursor: pointer;
 }
