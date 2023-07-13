@@ -16,6 +16,11 @@
 }
 
 html {
+    line-height: 1.15;
+    height: 100%;
+    webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    overflow-y: scroll;
     background-color: var(--system-color);
     scroll-behavior: smooth; 
 }
@@ -23,42 +28,20 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   background-color: #f1f1f1;
-}
-
-#root {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: auto;
 }
 
 #root {
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display:grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
 }
 
-@media (max-width: 450px) {
-    #root {
-        min-height: auto;
-        height: 100%;
-    }
-    #root > *:nth-child(2) {
-        overflow-x: scroll;
-        white-space: nowrap;
-        margin: 0 auto!important;
-    }
-
-    footer {
-        padding: auto!important;
-    }
-
-    #root > *:nth-child(3) {
-        height: 100%!important;
-    }
-    
+#root > * {
+    width: 100%;
 }
+
 
 body::-webkit-scrollbar {
   width: 0.3rem;

@@ -76,9 +76,9 @@ export default function Header__2() {
                 <div className={`navbar-item ${theme ? "dark__theme" : ""}`}>
                     <PersonIcon className="clickable" />
                 </div>
-                <div className={`navbar-item ${theme ? "dark__theme" : ""}`}>
+                <Link to="/login" className={`navbar-item ${theme ? "dark__theme" : ""}`}>
                     <Cart__main />                    
-                </div>
+                </Link>
             </div>
             </div>
         </nav>
