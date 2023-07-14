@@ -17,7 +17,7 @@ export const queryClient = new QueryClient();
 export default function Main__products() {
   const { Add_to_cart } = useCart() as CartType;
   const { sandwich, error, isLoading } = useSandwich();
-  const { loggedIn, favourites } = useAccount();
+  const { loggedIn, favourites, mutate } = useAccount();
 
   const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ export default function Main__products() {
                     key={index}
                   >
                     {loggedIn ? (
-                      <div className="shop__main__products__products__container__product__favorite">
+                      <div onClick={() => {mutate(product.id)}} className="shop__main__products__products__container__product__favorite">
                         {favourites && favourites.includes(product.id) ? (
                           <StarIcon />
                         ) : (
@@ -76,7 +76,7 @@ export default function Main__products() {
                           />
                         </Badge>
                       </div>
-                      <h5>${product.price}</h5>
+                      <h5 className={`${theme ? "price__DARK" : ""}`}>${product.price}</h5>
                       <button
                         onClick={() =>
                           Add_to_cart(

@@ -7,13 +7,16 @@ import { useTheme } from "../Theme_context";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import NightlightIcon from "@mui/icons-material/Nightlight";
 import PersonIcon from "@mui/icons-material/Person";
-import { ThemeType } from "../Types";
+import { SandwichType, ThemeType } from "../Types";
 import Cart__main from "./cart-components/Cart_main";
+import { Autocomplete, TextField } from "@mui/material";
+import { useSandwich } from "../Sandwich_context";
 
 export default function Header__2() {
   const { theme, setTheme } = useTheme() as ThemeType;
 
   const [shortHeader, setShortHeader] = useState<boolean>(false);
+  const { sandwich } = useSandwich();
 
   return (
     <nav
@@ -110,10 +113,25 @@ export default function Header__2() {
         <div className="navbar-end">
           <div className="field has-addons">
             <div className={`control ${theme ? "DARK_INPUTS" : ""}`}>
-              <input className="input" type="text" placeholder="Cheesy waren" />
-            </div>
-            <div className="control">
-              <button className="button BackGroundMain">Search</button>
+               <Autocomplete
+                freeSolo
+                id="sandwich_search_bar"
+                renderOption={(_, option: any) => (
+                    <Link to={`/shop/${option.id}`} className="navbar-item">{option.name}</Link>
+                )}
+                options={sandwich}
+                disableClearable
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        label="Search Sandwich"
+                        inputProps={{
+                            ...params.inputProps,
+                            type: 'search',
+                        }}
+                    />
+                )}
+                />
             </div>
           </div>
           <Link

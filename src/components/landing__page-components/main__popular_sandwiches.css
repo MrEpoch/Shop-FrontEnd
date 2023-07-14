@@ -100,3 +100,9 @@
   font-size: 1.3rem;
   border-radius: 10px;
 }
+
+#star_color svg {
+    color: var(--main-color)!important;
+    width: 25px;
+    height: 25px;
+}

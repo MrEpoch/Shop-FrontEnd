@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useMemo } from "react";
 import { ChildrenProp } from "./Types";
 import { GetAccount, UpdateFavourites } from "./API_requests";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 const AccountContext = createContext<any>({});
 
@@ -21,31 +21,37 @@ export default function Account_context({ children }: ChildrenProp) {
   const [favourites, setFavourites] = useState<any[]>([]);
   const [orders, setOrders] = useState<any[]>([]);
 
-  const { isLoading, error, data } = useQuery<any[], Error>({
+  const { isLoading, error, data } = useQuery<any, Error>({
     queryKey: ["account"],
     queryFn: () => wait(1000).then(() => GetAccount()),
   });
 
+  const { mutate } = useMutation({
+    mutationFn: (id: string) => {
+        return Update_account_favourites(id);
+    },
+  });
+
   function Fill_user_account(data: any) {
-    setAccount(data);
+    setAccount(data[0]);
     return;
   }
 
   async function Update_account_favourites(id: string) {
     if (loggedIn) {
-      if (account.favorites.includes(id)) {
-        const index = account.favorites.indexOf(id);
+      if (account.favouritesId.includes(id)) {
+        const index = account.favouritesId.indexOf(id);
         setAccount((prev: any) => ({
           ...prev,
-          favorites: prev.favorites.splice(index, 1),
+          favouritesId: prev.favouritesId.splice(index, 1),
         }));
         setFavourites((prev: any) => prev.splice(index, 1));
-        await UpdateFavourites([...account.favorites.splice(index, 1)]);
+        await UpdateFavourites([...account.favouritesId.splice(index, 1)]);
         return;
       } else {
-        account.favorites.push(id);
+        account.favouritesId.push(id);
         setFavourites((prev: any) => [...prev, id]);
-        await UpdateFavourites([...account.favorites, id]);
+        await UpdateFavourites([...account.favouritesId, id]);
         setAccount(account);
         return;
       }
@@ -55,7 +61,7 @@ export default function Account_context({ children }: ChildrenProp) {
   useMemo(() => {
     if (Object.keys(account).length > 0) {
       setLoggedIn(true);
-      setFavourites(account.favorites);
+      setFavourites(account.favouritesId);
       setOrders(account.orders);
     } else {
       setLoggedIn(false);
@@ -66,7 +72,7 @@ export default function Account_context({ children }: ChildrenProp) {
 
   useMemo(() => {
     if (data) {
-      setAccount(data);
+        Fill_user_account(data);
     }
   }, [data]);
 
@@ -75,6 +81,7 @@ export default function Account_context({ children }: ChildrenProp) {
     error,
     isLoading,
     favourites,
+    mutate,
     Fill_user_account,
     loggedIn,
     Update_account_favourites,

@@ -66,3 +66,10 @@
   max-height: 5rem !important;
   width: auto;
 }
+
+#sandwich_search_bar {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    height: 20px;
+}
