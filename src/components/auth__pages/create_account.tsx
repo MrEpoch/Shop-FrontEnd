@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useTheme } from "../../Theme_context.tsx";
 import { ThemeType } from "../../Types.tsx";
 
-import { isValidPhoneNumber } from "libphonenumber-js";
+import { isPossiblePhoneNumber } from "libphonenumber-js";
 import { postcodeValidator, postcodeValidatorExistsForCountry } from "postcode-validator";
 
 export default function Create_account() {
@@ -19,16 +19,17 @@ export default function Create_account() {
   const addressRef = useRef<HTMLInputElement>(null);
   const cityRef = useRef<HTMLInputElement>(null);
   const postalRef = useRef<HTMLInputElement>(null);
-  const countryRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [country, setCountry] = useState<any>({});
+  
   const [error, setError] = useState<string>("");
 
   const navigate = useNavigate();
 
   const { Fill_user_account } = useAccount();
   const { theme } = useTheme() as ThemeType;
-    
+
   async function New_account() {
     setError("");
     setLoading(true);
@@ -42,7 +43,7 @@ export default function Create_account() {
       addressRef.current === null ||
       cityRef.current === null ||
       postalRef.current === null ||
-      countryRef.current === null
+      Object.keys(country).length === 0
     ) {
       console.log("something is null");
       setLoading(false);
@@ -110,21 +111,20 @@ export default function Create_account() {
       setError("Postal code cannot be empty");
       return;
     }
-    if (countryRef.current.value.trim() === "") {
+    if (Object.keys(country).length === 0) {
       setLoading(false);
       setError("Country cannot be empty");
       return;
     }
     
-    if (isValidPhoneNumber(phoneRef.current.value) === false) {
+    if (isPossiblePhoneNumber(phoneRef.current.value, country.code) === false) {
       setLoading(false);
-      setError("Phone number is not valid");
+      setError("Invalid phone number");
       return;
     }
     
-    const check_post_code = countries.find((country) => country.label === countryRef.current?.value)?.code as string;
-    if (postcodeValidatorExistsForCountry(check_post_code) === false) {
-        if (postcodeValidator(postalRef.current.value, check_post_code) === false) {
+    if (postcodeValidatorExistsForCountry(country.code) === false) {
+        if (postcodeValidator(postalRef.current.value, country.code) === false) {
             setLoading(false);
             setError("Postal code is not valid");
             return;
@@ -140,10 +140,8 @@ export default function Create_account() {
         addressRef.current.value,
         cityRef.current.value,
         postalRef.current.value,
-        countryRef.current.value,
+        country.label
       );
-
-      console.log("was it fill");
       await Fill_user_account(user);
       navigate("/");
     } catch (e) {
@@ -153,8 +151,6 @@ export default function Create_account() {
       return;
     }
   }
-
-  if (error) return <>{error}</>;
 
   return (
     <>
@@ -172,7 +168,7 @@ export default function Create_account() {
             <Alert
               severity="error"
               onClose={() => setError("")}
-              style={{ position: "absolute", top: 33 }}
+              style={{ position: "fixed", zIndex: 10, right: "1%", bottom: "0%" }}
               className="error__auth"
             >
               {error}
@@ -242,6 +238,44 @@ export default function Create_account() {
               </div>
             </div>
             <div className="field">
+              <Autocomplete
+                onChange={(_, newValue) => {
+                    if (newValue) {
+                        setCountry(newValue);
+                    }
+                }}
+                className="shop__acc-create__country-select"
+                placeholder="Country"
+                options={countries}
+                getOptionLabel={(option) => option.label}
+                
+                renderOption={(props, option) => (
+                            <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                              <img
+                                loading="lazy"
+                                width="20"
+                                src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+                                srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                                alt=""
+                              />
+                              {option.label} ({option.code}) +{option.phone}
+                            </Box>
+                )}
+
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        label="Country"
+                        variant="outlined"
+                        inputProps={{
+                            ...params.inputProps,
+                            autoComplete: 'new-password', // disable autocomplete and autofill
+                        }}
+                    />
+                )}
+              />
+            </div>
+            <div className="field">
               <label className="label">Address</label>
               <div className="control">
                 <input
@@ -273,42 +307,6 @@ export default function Create_account() {
                   placeholder="Postal code"
                 />
               </div>
-            </div>
-            <div className="field">
-              <Autocomplete
-                ref={countryRef}
-                className="shop__acc-create__country-select"
-                placeholder="Country"
-                options={countries}
-                getOptionLabel={(option) => option.label}
-                
-                renderOption={(props, option) => (
-                            <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                              <img
-                                loading="lazy"
-                                width="20"
-                                src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                                srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-                                alt=""
-                              />
-                              {option.label} ({option.code}) +{option.phone}
-                            </Box>
-                )}
-
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label="Country"
-                        variant="outlined"
-                        inputProps={{
-                            ...params.inputProps,
-                            autoComplete: 'new-password', // disable autocomplete and autofill
-                        }}
-                    />
-                )}
-              />
-
-
             </div>
             <button className="button is-primary" onClick={New_account}>
               Sign up

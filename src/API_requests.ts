@@ -3,7 +3,7 @@ import axios from "axios";
 // @ts-ignore
 import CryptoJS from "crypto-js";
 
-export const request_auth_url = "http://localhost:4529/auth_user";
+export const request_auth_url = "http://localhost:4529/auth-user";
 
 export const request_sandwiches_url = "http://localhost:4527/server";
 
@@ -64,10 +64,11 @@ export const CreateAccount = async (
       postalCode: postalCode,
       country: country,
     });
-
+    
+    const encrypted_refresh_token = CryptoJS.AES.encrypt(data.REFRESH_TOKEN, import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY).toString();
     localStorage.setItem(
       import.meta.env.VITE_REFRESH_TOKEN_NAME,
-      data.REFRESH_TOKEN,
+      encrypted_refresh_token,
     );
     return data.user;
   } catch (e) {
@@ -82,7 +83,7 @@ export const GetAccount = async () => {
       localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME),
       import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY,
     ).toString(CryptoJS.enc.Utf8);
-    const access_token = await axios.post(request_auth_url + "/token/", {
+    const access_token = await axios.post(request_auth_url + "/token", {
       token: refresh_token,
     });
 
