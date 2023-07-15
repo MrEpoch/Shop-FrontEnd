@@ -5,24 +5,44 @@ import { useState } from "react";
 import { useCart } from "../../Cart_context";
 import { CartType, ThemeType } from "../../Types";
 import { useTheme } from "../../Theme_context";
+import { Alert } from "@mui/material";
 
 export default function Cart__main() {
   const [openModal, setOpenModal] = useState(false);
 
   const { theme } = useTheme() as ThemeType;
+  const [message, setMessage] = useState("");
 
   const { Get_cart_length, Get_cart } = useCart() as CartType;
+  
+  function Can_Open_modal() {
+    if (Get_cart_length() > 0) {
+      setOpenModal(true);
+    } else {
+        setMessage("Your cart is empty");
+    }
+  }
 
   return (
     <div className="shop__cart_modal">
       <Badge
-        onClick={() => setOpenModal(true)}
+        onClick={() => Can_Open_modal()}
         style={{ padding: "5px" }}
         badgeContent={Get_cart_length()}
         color="secondary"
       >
         <CartIcon className="clickable" />
       </Badge>
+      {message.length > 0 && (
+            <Alert
+              severity="info"
+              onClose={() => setMessage("")}
+              style={{ position: "fixed", zIndex: 10, right: "1%", bottom: "0%" }}
+              className="error__auth"
+            >
+              {message}
+            </Alert>
+      )}
       <div className={`modal ${openModal ? "is-active" : ""}`}>
         <div
           onClick={() => setOpenModal(false)}
@@ -50,7 +70,7 @@ export default function Cart__main() {
                   </div>
                   <div className="shop__cart__modal__item__info">
                     <h1>{item.name}</h1>
-                    <p>Price: ${item.price}</p>
+                    <p>For one: ${item.price}</p>
                     <p>Quantity: {item.quantity}</p>
                   </div>
                 </div>

@@ -11,6 +11,7 @@ import Shop_item__page from "./components/shop__item__page";
 import Login__page from "./components/auth__pages/log_in.tsx";
 import Sign_up from "./components/auth__pages/create_account.tsx";
 import { useEffect } from "react";
+import User__page from "./components/auth__pages/user__page.tsx";
 
 function PackPage({ children }: ChildrenProp) {
   return (
@@ -39,8 +40,8 @@ function Check_token({ children }: ChildrenProp) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate("/login");
-  }, [navigate]);
+    if (!token) navigate("/login");
+  }, [navigate, token]);
 
   if (token) {
     return <>{children}</>;
@@ -118,7 +119,7 @@ export default function Router() {
           element={
             <Check_token>
               <PackPage>
-                <h1>USER PAGE</h1>
+                <User__page />
               </PackPage>
             </Check_token>
           }

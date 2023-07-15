@@ -112,12 +112,13 @@ export default function Header__2() {
 
         <div className="navbar-end">
           <div className="field has-addons">
-            <div className={`control ${theme ? "DARK_INPUTS" : ""}`}>
+            <div className={`control ${theme ? "DARK_INPUTS DARK_INPUTS_HEADER" : ""}`}>
                <Autocomplete
                 freeSolo
                 id="sandwich_search_bar"
+                getOptionLabel={(option: any) => option.name}
                 renderOption={(_, option: any) => (
-                    <Link to={`/shop/${option.id}`} className="navbar-item">{option.name}</Link>
+                    <Link key={option.name} to={`/shop/${option.id}`} className="navbar-item">{option.name}</Link>
                 )}
                 options={sandwich}
                 disableClearable
@@ -135,7 +136,7 @@ export default function Header__2() {
             </div>
           </div>
           <Link
-            to="/login"
+            to="/user"
             className={`navbar-item ${theme ? "dark__theme" : ""}`}
           >
             <PersonIcon className="clickable" />

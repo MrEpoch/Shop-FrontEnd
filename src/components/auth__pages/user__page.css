@@ -3,8 +3,16 @@
   flex-direction: column;
   width: 100%;
   height: auto;
-  padding: 0 20px;
+}
+.shop__user-page__design {
+  --s: 100px; /* control the size */
+  --c1: var(--main-color);
+  --c2: #111;
+  height: 100px;
+
+  background: 
+    linear-gradient(-26.56deg,var(--c1) 33%,var(--c2) 33.3% 66.6%,var(--c1) 67%) 
+    0/var(--s) var(--s);
+  /* 26.56deg = arctan(0.5) */
 }
 
-.shop__user-page__design {
-}

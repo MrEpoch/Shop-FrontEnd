@@ -2,10 +2,11 @@ import "./user__page.css";
 import { useAccount } from "../../Account_context";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useSandwich } from "../../Sandwich_context";
+import Sandwich_card from "../shop__page-components/sandwich-card";
 
 export default function User__page() {
   const { account, favourites } = useAccount();
-  const { sandwiches } = useSandwich();
+  const { sandwich } = useSandwich();
 
   return (
     <section className="shop__user-page">
@@ -13,8 +14,12 @@ export default function User__page() {
         <LogoutIcon />
       </div>
       <div className="shop__user-page__design"></div>
+      <div className="shop__user-page__greeting">
+        <h1>Hi, {account && account.name}!</h1>
+        <p>Here you can see your account information, favourites and orders.</p>
+      </div>
       <div className="shop__user-page__information">
-        <h3>Account information</h3>
+        <h3>Account information:</h3>
         <div className="shop__user-page__information__container">
           <h3>Name: {account && account.name}</h3>
           <h3>Email: {account && account.email}</h3>
@@ -25,26 +30,12 @@ export default function User__page() {
       <div className="shop__user-page__favourites">
         <h3>Favourites</h3>
         <div className="shop__user-page__favourites__container">
-          {sandwiches &&
-            sandwiches
+          {sandwich &&
+            <Sandwich_card sandwich={sandwich
               .filter(
-                (favourite: any) =>
-                  favourites && favourites.includes(favourite.id),
-              )
-              .map((favourite: any, index: number) => (
-                <div
-                  className="shop__user-page__favourites__container__favourite"
-                  key={index}
-                >
-                  <div className="shop__user-page__favourites__container__favourite__image">
-                    <img src={favourite.image} alt={favourite.name} />
-                  </div>
-                  <div className="shop__user-page__favourites__container__favourite__info">
-                    <h4>{favourite.name}</h4>
-                    <p>{favourite.description}</p>
-                  </div>
-                </div>
-              ))}
+                (favourite: any) => favourites && favourites.includes(favourite.id)
+                )} />
+            }
         </div>
       </div>
       <div className="shop__user-page__orders"></div>
