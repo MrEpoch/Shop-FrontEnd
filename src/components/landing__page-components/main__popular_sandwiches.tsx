@@ -8,9 +8,8 @@ export default function Popular__sandwiches() {
 
   Array.prototype.three_best = function () {
     return this.sort((a: SandwichType, b: SandwichType) => {
-        return b.numReviews - a.numReviews;
-        })
-        .slice(0, 3);
+      return b.numReviews - a.numReviews;
+    }).slice(0, 3);
   };
 
   return (

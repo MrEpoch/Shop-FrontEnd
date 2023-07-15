@@ -3,16 +3,138 @@
   flex-direction: column;
   width: 100%;
   height: auto;
+  position: relative;
 }
+
+.shop__user-page__logout {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: auto;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #000 !important;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.shop__user-page__logout:hover {
+  cursor: pointer;
+  transform: scale(1.05) translateX(-2px) translateY(2px);
+  transition: all 0.3s ease-in-out;
+}
+
+.shop__user-page__logout svg {
+}
+
 .shop__user-page__design {
-  --s: 100px; /* control the size */
-  --c1: var(--main-color);
-  --c2: #111;
-  height: 100px;
-
-  background: 
-    linear-gradient(-26.56deg,var(--c1) 33%,var(--c2) 33.3% 66.6%,var(--c1) 67%) 
-    0/var(--s) var(--s);
-  /* 26.56deg = arctan(0.5) */
+  background-color: var(--main-color);
+  width: 100%;
+  height: auto;
+  padding: 5rem;
+  padding-bottom: 7rem;
 }
 
+.shop__user-page__greeting {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.shop__user-page__greeting h1 {
+  font-size: 2.5rem;
+  color: black;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
+
+.shop__user-page__greeting p {
+  font-size: 1.3rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  color: #444;
+}
+
+.shop__user-page__information {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.shop__user-page__information h3 {
+  margin-left: 2.5rem;
+  font-size: 1.3rem;
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  width: auto;
+  gap: 2rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
+
+.shop__user-page__information h3 > svg {
+  border-radius: 50%;
+  color: var(--main-color);
+  background-color: #000;
+  border: 2px solid #000;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.3rem;
+}
+
+.shop__user-page__favourites {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  height: auto;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.shop__user-page__favourites > h3 {
+  font-size: 2rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  background-color: #000;
+  color: var(--main-color);
+  padding: 1rem;
+  max-width: 200px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.custom-shape-divider-top-1689418504 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1689418504 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 100px;
+}
+
+.custom-shape-divider-top-1689418504 .shape-fill {
+  fill: var(--main-color);
+}

@@ -191,4 +191,4 @@ If you have any questions or concerns regarding this Privacy Policy or our priva
 By using the Fake Company website, you acknowledge that you have read, understood, and agree to this Privacy Policy.
 
 Thank you for trusting Fake Company with your personal information.
-`
+`;

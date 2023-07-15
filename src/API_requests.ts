@@ -22,9 +22,8 @@ export const LogIn = async (name: string, password: string) => {
       encrypted_refresh_token,
     );
     return data.user;
-  } catch (e) {
-    console.log(e);
-    throw new Error("error");
+  } catch (e: any) {
+    handle_err(e);
   }
 };
 
@@ -34,7 +33,7 @@ export const LogOut = async () => {
       localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME),
       import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY,
     ).toString(CryptoJS.enc.Utf8);
-    await axios.post(request_auth_url + "/logout/", { token: refresh_token });
+    await axios.post(request_auth_url + "/logout", { token: refresh_token });
 
     localStorage.removeItem(import.meta.env.VITE_REFRESH_TOKEN_NAME);
     return;
@@ -64,21 +63,25 @@ export const CreateAccount = async (
       postalCode: postalCode,
       country: country,
     });
-    
-    const encrypted_refresh_token = CryptoJS.AES.encrypt(data.REFRESH_TOKEN, import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY).toString();
+
+    const encrypted_refresh_token = CryptoJS.AES.encrypt(
+      data.REFRESH_TOKEN,
+      import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY,
+    ).toString();
     localStorage.setItem(
       import.meta.env.VITE_REFRESH_TOKEN_NAME,
       encrypted_refresh_token,
     );
     return data.user;
-  } catch (e) {
-    console.log(e);
+  } catch (e: any) {
+        handle_err(e);
     throw new Error("error");
   }
 };
 
 export const GetAccount = async () => {
   try {
+    if (!localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME)) return;
     const refresh_token = CryptoJS.AES.decrypt(
       localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME),
       import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY,
@@ -94,7 +97,8 @@ export const GetAccount = async () => {
       },
     );
     return data;
-  } catch (e) {
+  } catch (e: any) {
+        handle_err(e);
     throw new Error("error");
   }
 };
@@ -140,7 +144,8 @@ export const PostComment = async (
       },
     );
     return data;
-  } catch (e) {
+  } catch (e: any) {
+    handle_err(e); 
     throw new Error("error");
   }
 };
@@ -168,7 +173,10 @@ export const UpdateComment = async (
       },
     );
     return data;
-  } catch (e) {
+  } catch (e: any) {
+    
+    handle_err(e);
+
     throw new Error("error");
   }
 };
@@ -191,7 +199,20 @@ export const UpdateFavourites = async (favourites: string[]) => {
       },
     );
     return data;
-  } catch (e) {
+  } catch (e: any) {
+    handle_err(e);
     throw new Error("error");
   }
 };
+
+
+async function handle_err(e: any) {
+if (
+      typeof e === "object" &&
+      Object.keys(e.response).includes("data") &&
+      e.response.data.message === "TokenExpiredError"
+    ) {
+      await LogOut();
+      window.location.pathname = "/";
+    }
+}

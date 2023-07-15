@@ -14,12 +14,12 @@ export default function Cart__main() {
   const [message, setMessage] = useState("");
 
   const { Get_cart_length, Get_cart } = useCart() as CartType;
-  
+
   function Can_Open_modal() {
     if (Get_cart_length() > 0) {
       setOpenModal(true);
     } else {
-        setMessage("Your cart is empty");
+      setMessage("Your cart is empty");
     }
   }
 
@@ -34,14 +34,14 @@ export default function Cart__main() {
         <CartIcon className="clickable" />
       </Badge>
       {message.length > 0 && (
-            <Alert
-              severity="info"
-              onClose={() => setMessage("")}
-              style={{ position: "fixed", zIndex: 10, right: "1%", bottom: "0%" }}
-              className="error__auth"
-            >
-              {message}
-            </Alert>
+        <Alert
+          severity="info"
+          onClose={() => setMessage("")}
+          style={{ position: "fixed", zIndex: 10, right: "1%", bottom: "0%" }}
+          className="error__auth"
+        >
+          {message}
+        </Alert>
       )}
       <div className={`modal ${openModal ? "is-active" : ""}`}>
         <div

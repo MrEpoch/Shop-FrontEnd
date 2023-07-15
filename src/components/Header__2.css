@@ -68,12 +68,12 @@
 }
 
 #sandwich_search_bar {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    height: 20px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  height: 20px;
 }
 
 .DARK_INPUTS_HEADER label {
-    color: #ccc!important;
+  color: #ccc !important;
 }

@@ -23,7 +23,7 @@ export default function LogIn() {
   async function LogIn() {
     if (nameRef.current === null || passwordRef.current === null) {
       setLoading(false);
-      setError("Something went wrong");
+      setError("Invalid values");
       return;
     }
     setLoading(true);
@@ -65,7 +65,7 @@ export default function LogIn() {
         passwordRef.current.value,
       );
       await Fill_user_account(user);
-      navigate("/");
+      navigate("/user");
       return;
     } catch (e) {
       setLoading(false);
@@ -89,18 +89,20 @@ export default function LogIn() {
           {error !== "" ? (
             <Alert
               severity="error"
-              onClose={() => {
-                setError("");
+              onClose={() => setError("")}
+              style={{
+                position: "fixed",
+                zIndex: 10,
+                right: "1%",
+                bottom: "0%",
               }}
-              style={{ position: "absolute", top: 33 }}
               className="error__auth"
             >
               {error}
             </Alert>
           ) : (
             <></>
-          )}
-          <div
+          )}          <div
             className={`login__page__form ${
               theme ? "dark__theme__container" : ""
             }`}

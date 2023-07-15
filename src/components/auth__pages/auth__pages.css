@@ -63,7 +63,7 @@
 .DARK_INPUTS input {
   border: none;
   background-color: #333 !important;
-  color: #fff!important;
+  color: #fff !important;
 }
 
 .DARK_INPUTS input::placeholder {

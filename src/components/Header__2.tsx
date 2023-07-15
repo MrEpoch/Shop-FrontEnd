@@ -112,27 +112,37 @@ export default function Header__2() {
 
         <div className="navbar-end">
           <div className="field has-addons">
-            <div className={`control ${theme ? "DARK_INPUTS DARK_INPUTS_HEADER" : ""}`}>
-               <Autocomplete
+            <div
+              className={`control ${
+                theme ? "DARK_INPUTS DARK_INPUTS_HEADER" : ""
+              }`}
+            >
+              <Autocomplete
                 freeSolo
                 id="sandwich_search_bar"
                 getOptionLabel={(option: any) => option.name}
                 renderOption={(_, option: any) => (
-                    <Link key={option.name} to={`/shop/${option.id}`} className="navbar-item">{option.name}</Link>
+                  <Link
+                    key={option.name}
+                    to={`/shop/${option.id}`}
+                    className="navbar-item"
+                  >
+                    {option.name}
+                  </Link>
                 )}
                 options={sandwich}
                 disableClearable
                 renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label="Search Sandwich"
-                        inputProps={{
-                            ...params.inputProps,
-                            type: 'search',
-                        }}
-                    />
+                  <TextField
+                    {...params}
+                    label="Search Sandwich"
+                    inputProps={{
+                      ...params.inputProps,
+                      type: "search",
+                    }}
+                  />
                 )}
-                />
+              />
             </div>
           </div>
           <Link

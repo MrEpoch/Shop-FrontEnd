@@ -24,7 +24,6 @@ export default function Sandwich_context({ children }: ChildrenProp) {
   );
 
   useMemo(() => {
-    console.log("again");
     if (data) {
       setSandwich(data);
     }

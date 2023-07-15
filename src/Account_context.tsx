@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useMemo } from "react";
 import { ChildrenProp } from "./Types";
-import { GetAccount, UpdateFavourites } from "./API_requests";
+import { GetAccount, LogOut, UpdateFavourites } from "./API_requests";
 import { useMutation, useQuery } from "react-query";
 
 const AccountContext = createContext<any>({});
@@ -26,14 +26,23 @@ export default function Account_context({ children }: ChildrenProp) {
     queryFn: () => wait(1000).then(() => GetAccount()),
   });
 
+  const handleLogout = () => {
+    setAccount({});
+    setLoggedIn(false);
+    setFavourites([]);
+    setOrders([]);
+    LogOut();
+  };
+
   const { mutate } = useMutation({
     mutationFn: (id: string) => {
-        return Update_account_favourites(id);
+      return Update_account_favourites(id);
     },
   });
 
   function Fill_user_account(data: any) {
-    setAccount(data[0]);
+    console.log(data);
+    setAccount(data);
     return;
   }
 
@@ -72,13 +81,19 @@ export default function Account_context({ children }: ChildrenProp) {
 
   useMemo(() => {
     if (data) {
-        Fill_user_account(data);
+      if (Array.isArray(data)) {
+        console.log(data[0]);
+        Fill_user_account(data[0]);
+      } else {
+          Fill_user_account(data);
+      }
     }
   }, [data]);
 
   const value = {
     account,
     error,
+    handleLogout,
     isLoading,
     favourites,
     mutate,
