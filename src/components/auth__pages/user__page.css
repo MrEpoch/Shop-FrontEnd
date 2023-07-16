@@ -80,6 +80,11 @@
   display: flex;
   align-items: center;
   width: auto;
+  word-break: break-word;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
   gap: 2rem;
   font-family: "Roboto", sans-serif;
   font-weight: 100;
@@ -97,9 +102,9 @@
 
 .shop__user-page__favourites {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 2rem;
-  width: 100%;
+  flex-wrap: wrap;
   height: auto;
   margin-left: 2.5rem;
   margin-right: 2.5rem;
@@ -117,6 +122,8 @@
   max-width: 200px;
   width: 100%;
   border-radius: 10px;
+
+  text-align: center;
 }
 
 .custom-shape-divider-top-1689418504 {
@@ -140,6 +147,40 @@
 }
 
 #dark__logout__svg {
-    color: var(--main-color) !important;
-    background-color: var(--dark-theme-light) !important;
+  color: var(--main-color) !important;
+  background-color: var(--dark-theme-light) !important;
+}
+
+@media (max-width: 500px) {
+  .shop__user-page__design {
+    height: 250px;
+    padding: 2rem;
+  }
+
+  .shop__user-page__greeting h1 {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+
+  .shop__user-page__greeting p {
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+
+  .shop__user-page__information h3 {
+    font-size: 1.1rem;
+    margin-left: 1rem;
+  }
+
+  .shop__user-page__favourites > h3 {
+    font-size: 1.5rem;
+    max-width: 170px;
+  }
+
+  .shop__user-page__favourites {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 0rem;
+  }
 }

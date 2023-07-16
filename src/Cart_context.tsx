@@ -1,5 +1,5 @@
 import "./App.css";
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { CartProductType, CartType, ChildrenProp } from "./Types";
 
 const CartContext = createContext<CartType | object>({});
@@ -10,15 +10,17 @@ export function useCart() {
   return value;
 }
 
-export default function Cart_context({ children }: ChildrenProp) {
-  const [cart, setCart] = useState<CartProductType[]>([]);
+export default function Cart_context({
+  children,
+}: ChildrenProp): React.JSX.Element {
+  const [cart, setCart] = useState<CartProductType[] | []>([]);
 
   function Add_to_cart(
     sandwichId: string,
     sandwichName: string,
     sandwichImage: string,
     sandwichPrice: string,
-  ) {
+  ): Array<CartProductType> {
     const newCart = [...cart];
     const itemCheck = newCart.find(
       (item: CartProductType) => item.id === sandwichId,
@@ -47,17 +49,18 @@ export default function Cart_context({ children }: ChildrenProp) {
     return newCart;
   }
 
-  function Remove_from_cart(sandwichId: string) {
+  function Remove_from_cart(sandwichId: string): void {
     setCart((prev: CartProductType[]) =>
       prev.filter((item: CartProductType) => item.id !== sandwichId),
     );
+    return;
   }
 
-  function Get_cart_length() {
+  function Get_cart_length(): number {
     return cart.length;
   }
 
-  function Get_cart() {
+  function Get_cart(): Array<CartProductType> {
     return cart;
   }
 

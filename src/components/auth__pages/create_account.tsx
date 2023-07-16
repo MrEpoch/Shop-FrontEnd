@@ -44,9 +44,9 @@ export default function Create_account() {
     setLoading(true);
 
     if (Object.keys(country).length === 0) {
-        setLoading(false);
-        setError("Country cannot be empty");
-        return;
+      setLoading(false);
+      setError("Country cannot be empty");
+      return;
     }
 
     if (
@@ -57,7 +57,7 @@ export default function Create_account() {
       phoneRef.current === null ||
       addressRef.current === null ||
       cityRef.current === null ||
-      postalRef.current === null 
+      postalRef.current === null
     ) {
       setLoading(false);
       setError("Invalid values");

@@ -1,3 +1,5 @@
+import { UseMutationResult } from "react-query";
+
 export interface ChildrenProp {
   children: React.ReactNode;
 }
@@ -39,6 +41,38 @@ export type SandwichType = {
   comments: Array<CommentType>;
 };
 
+export type userType = {
+  id: string;
+  name: string;
+  password: string;
+  createdAt: string;
+  email: string;
+  address: string;
+  phone: string;
+  city: string;
+  postalCode: string;
+  country: string;
+  orders: Array<OrderType>;
+  favouritesId: Array<string>;
+  banned: boolean;
+};
+
+export type OrderType = {
+  id: number;
+  createdAt: number;
+  total: number;
+  status: OrderStatus;
+  items: string[];
+  userId: string[];
+};
+
+enum OrderStatus {
+  pending,
+  completed,
+  cancelled,
+  processing,
+}
+
 export type CommentType = {
   id: string;
   name: string;
@@ -47,4 +81,16 @@ export type CommentType = {
   createdAt: string;
   belongsToId: string;
   belongsToSandwichId: string;
+};
+
+export type AccountContextType = {
+  account: userType;
+  error: string;
+  handleLogout: () => void;
+  isLoading: boolean;
+  favourites: string[];
+  mutate: UseMutationResult;
+  Fill_user_account: (data: userType) => void;
+  loggedIn: boolean;
+  Update_account_favourites: (id: string) => Promise<void>;
 };

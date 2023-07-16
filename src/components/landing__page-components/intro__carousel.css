@@ -37,3 +37,9 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+@media (max-width: 550px) {
+  .landing__page-carousal__slogan {
+    font-size: 2rem;
+  }
+}

@@ -23,4 +23,3 @@ export default function Popular__sandwiches() {
     </section>
   );
 }
-

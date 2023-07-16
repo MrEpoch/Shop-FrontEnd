@@ -1,9 +1,9 @@
-import { createContext, useContext, useState, useMemo } from "react";
-import { ChildrenProp } from "./Types";
+import React, { createContext, useContext, useState, useMemo } from "react";
+import { AccountContextType, ChildrenProp, OrderType, userType } from "./Types";
 import { GetAccount, LogOut, UpdateFavourites } from "./API_requests";
 import { useMutation, useQuery } from "react-query";
 
-const AccountContext = createContext<any>({});
+const AccountContext = createContext<AccountContextType | object>({});
 
 export function useAccount() {
   const value = useContext(AccountContext);
@@ -15,23 +15,37 @@ export function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export default function Account_context({ children }: ChildrenProp) {
-  const [account, setAccount] = useState<any | object>({});
+export default function Account_context({
+  children,
+}: ChildrenProp): React.JSX.Element {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const [favourites, setFavourites] = useState<any[]>([]);
-  const [orders, setOrders] = useState<any[]>([]);
+  const [favourites, setFavourites] = useState<string[] | []>([]);
+  const [orders, setOrders] = useState<OrderType[] | []>([]);
 
-  const { isLoading, error, data } = useQuery<any, Error>({
+  const { isLoading, error, data } = useQuery<userType, Error>({
     queryKey: ["account"],
     queryFn: () => wait(1000).then(() => GetAccount()),
   });
 
-  const handleLogout = () => {
-    setAccount({});
+  type initialAccountType = {
+    favouritesId: string[];
+    orders: OrderType[];
+  };
+
+  const initialAccount: initialAccountType = {
+    favouritesId: [],
+    orders: [],
+  };
+  const [account, setAccount] = useState<userType | initialAccountType>(
+    initialAccount,
+  );
+
+  const handleLogout = (): void => {
     setLoggedIn(false);
     setFavourites([]);
     setOrders([]);
     LogOut();
+    return;
   };
 
   const { mutate } = useMutation({
@@ -40,26 +54,26 @@ export default function Account_context({ children }: ChildrenProp) {
     },
   });
 
-  function Fill_user_account(data: any) {
-    console.log(data);
+  function Fill_user_account(data: userType): void {
     setAccount(data);
     return;
   }
 
-  async function Update_account_favourites(id: string) {
-    if (loggedIn) {
-      if (account.favouritesId.includes(id)) {
+  async function Update_account_favourites(id: string): Promise<void> {
+    if (loggedIn && Object.keys(account).includes("favouritesId")) {
+      if (!account.favouritesId) return;
+      if (account.favouritesId && account.favouritesId.includes(id)) {
         const index = account.favouritesId.indexOf(id);
-        setAccount((prev: any) => ({
+        setAccount((prev: userType | initialAccountType) => ({
           ...prev,
           favouritesId: prev.favouritesId.splice(index, 1),
         }));
-        setFavourites((prev: any) => prev.splice(index, 1));
+        setFavourites((prev: string[]) => prev.splice(index, 1));
         await UpdateFavourites([...account.favouritesId.splice(index, 1)]);
         return;
       } else {
         account.favouritesId.push(id);
-        setFavourites((prev: any) => [...prev, id]);
+        setFavourites((prev: string[]) => [...prev, id]);
         await UpdateFavourites([...account.favouritesId, id]);
         setAccount(account);
         return;
@@ -82,10 +96,9 @@ export default function Account_context({ children }: ChildrenProp) {
   useMemo(() => {
     if (data) {
       if (Array.isArray(data)) {
-        console.log(data[0]);
         Fill_user_account(data[0]);
       } else {
-          Fill_user_account(data);
+        Fill_user_account(data);
       }
     }
   }, [data]);
@@ -99,6 +112,7 @@ export default function Account_context({ children }: ChildrenProp) {
     mutate,
     Fill_user_account,
     loggedIn,
+    orders,
     Update_account_favourites,
   };
 

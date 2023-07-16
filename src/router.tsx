@@ -4,14 +4,16 @@ import Footer from "./components/footer";
 import About__page from "./components/about__page";
 import Header__2 from "./components/Header__2";
 import Contact__page from "./components/contact__page";
-import { ChildrenProp } from "./Types";
+import { ChildrenProp, SandwichType } from "./Types";
 import Shop__page from "./components/shop__page";
 import { useSandwich } from "./Sandwich_context";
 import Shop_item__page from "./components/shop__item__page";
 import Login__page from "./components/auth__pages/log_in.tsx";
 import Sign_up from "./components/auth__pages/create_account.tsx";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import User__page from "./components/auth__pages/user__page.tsx";
+import CancelPage from "./components/payment_pages/cancel__page.tsx";
+import SuccessPage from "./components/payment_pages/success__page.tsx";
 
 function PackPage({ children }: ChildrenProp) {
   return (
@@ -23,12 +25,12 @@ function PackPage({ children }: ChildrenProp) {
   );
 }
 
-function Check_Validity_Page({ children }: ChildrenProp) {
+function Check_Validity_Page({ children }: ChildrenProp): React.JSX.Element {
   const { sandwich } = useSandwich();
 
   const { id } = useParams();
 
-  if (sandwich.find((item: any) => item.id === id)) {
+  if (sandwich.find((item: SandwichType) => item.id === id)) {
     return <>{children}</>;
   }
 
@@ -122,6 +124,22 @@ export default function Router() {
                 <User__page />
               </PackPage>
             </Check_token>
+          }
+        />
+        <Route
+          path="/cancel"
+          element={
+            <PackPage>
+              <CancelPage />
+            </PackPage>
+          }
+        />
+        <Route
+          path="/success"
+          element={
+            <PackPage>
+              <SuccessPage />
+            </PackPage>
           }
         />
       </Routes>

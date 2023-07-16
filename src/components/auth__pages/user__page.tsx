@@ -9,16 +9,18 @@ import LanguageIcon from "@mui/icons-material/Language";
 import PhoneIcon from "@mui/icons-material/Phone";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../Theme_context";
-import { ThemeType } from "../../Types";
+import { AccountContextType, SandwichType, ThemeType } from "../../Types";
 
-export default function User__page() {
-  const { account, favourites, handleLogout } = useAccount();
+export default function User__page(): React.JSX.Element { 
+  const { account, favourites, handleLogout } = useAccount() as AccountContextType;
   const { sandwich } = useSandwich();
   const navigate = useNavigate();
   const { theme } = useTheme() as ThemeType;
 
   return (
-    <section className={`shop__user-page ${theme ? "dark__theme__LIGHTER" : ""}`}>
+    <section
+      className={`shop__user-page ${theme ? "dark__theme__LIGHTER" : ""}`}
+    >
       <div
         onClick={() => {
           handleLogout();
@@ -73,7 +75,7 @@ export default function User__page() {
           {sandwich && (
             <Sandwich_card
               sandwich={sandwich.filter(
-                (favourite: any) =>
+                (favourite: SandwichType) =>
                   favourites && favourites.includes(favourite.id),
               )}
             />

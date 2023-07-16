@@ -1,26 +1,26 @@
 import "./auth__pages.css";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LogIn as LogInAPI } from "../../API_requests.ts";
 import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useAccount } from "../../Account_context.tsx";
-import { ThemeType } from "../../Types.tsx";
+import { AccountContextType, ThemeType, userType } from "../../Types.tsx";
 import { useTheme } from "../../Theme_context.tsx";
 
-export default function LogIn() {
+export default function LogIn(): React.JSX.Element {
   const nameRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
-  const { Fill_user_account } = useAccount();
+  const { Fill_user_account } = useAccount() as AccountContextType;
   const { theme } = useTheme() as ThemeType;
 
   const navigate = useNavigate();
 
-  async function LogIn() {
+  async function LogIn(): Promise<void> {
     if (nameRef.current === null || passwordRef.current === null) {
       setLoading(false);
       setError("Invalid values");
@@ -60,11 +60,11 @@ export default function LogIn() {
     }
 
     try {
-      const user = await LogInAPI(
+      const user: userType = await LogInAPI(
         nameRef.current.value,
         passwordRef.current.value,
       );
-      await Fill_user_account(user);
+      Fill_user_account(user);
       navigate("/user");
       return;
     } catch (e) {
@@ -102,7 +102,8 @@ export default function LogIn() {
             </Alert>
           ) : (
             <></>
-          )}          <div
+          )}{" "}
+          <div
             className={`login__page__form ${
               theme ? "dark__theme__container" : ""
             }`}
