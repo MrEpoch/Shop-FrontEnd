@@ -13,10 +13,7 @@ export const LogIn = async (name: string, password: string) => {
       name,
       password,
     });
-    const encrypted_refresh_token = CryptoJS.AES.encrypt(
-      data.REFRESH_TOKEN,
-      import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY,
-    ).toString();
+    const encrypted_refresh_token = encrypt_data(data.REFRESH_TOKEN, import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY);
     localStorage.setItem(
       import.meta.env.VITE_REFRESH_TOKEN_NAME,
       encrypted_refresh_token,
@@ -29,10 +26,8 @@ export const LogIn = async (name: string, password: string) => {
 
 export const LogOut = async () => {
   try {
-    const refresh_token = CryptoJS.AES.decrypt(
-      localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME),
-      import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY,
-    ).toString(CryptoJS.enc.Utf8);
+    if (!localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME)) return;
+    const refresh_token = decrypt_data(localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME), import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY);
     await axios.post(request_auth_url + "/logout", { token: refresh_token });
 
     localStorage.removeItem(import.meta.env.VITE_REFRESH_TOKEN_NAME);
@@ -64,10 +59,7 @@ export const CreateAccount = async (
       country: country,
     });
 
-    const encrypted_refresh_token = CryptoJS.AES.encrypt(
-      data.REFRESH_TOKEN,
-      import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY,
-    ).toString();
+    const encrypted_refresh_token = encrypt_data(data.REFRESH_TOKEN, import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY);
     localStorage.setItem(
       import.meta.env.VITE_REFRESH_TOKEN_NAME,
       encrypted_refresh_token,
@@ -82,10 +74,7 @@ export const CreateAccount = async (
 export const GetAccount = async () => {
   try {
     if (!localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME)) return;
-    const refresh_token = CryptoJS.AES.decrypt(
-      localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME),
-      import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY,
-    ).toString(CryptoJS.enc.Utf8);
+    const refresh_token = decrypt_data(localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME), import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY);
     const access_token = await axios.post(request_auth_url + "/token", {
       token: refresh_token,
     });
@@ -128,10 +117,7 @@ export const PostComment = async (
   sandwichId: string,
 ) => {
   try {
-    const refresh_token = CryptoJS.AES.decrypt(
-      localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME),
-      import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY,
-    ).toString(CryptoJS.enc.Utf8);
+    const refresh_token = decrypt_data(localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME), import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY);
     const access_token = await axios.post(request_auth_url + "/token/", {
       token: refresh_token,
     });
@@ -157,14 +143,10 @@ export const UpdateComment = async (
   commentId: string,
 ) => {
   try {
-    const refresh_token = CryptoJS.AES.decrypt(
-      localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME),
-      import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY,
-    ).toString(CryptoJS.enc.Utf8);
+    const refresh_token = decrypt_data(localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME), import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY);
     const access_token = await axios.post(request_auth_url + "/token/", {
       token: refresh_token,
     });
-
     const { data } = await axios.put(
       request_sandwiches_url + "/sandwiches/comment/" + commentId,
       { title, comment, rating },
@@ -183,10 +165,7 @@ export const UpdateComment = async (
 
 export const UpdateFavourites = async (favourites: string[]) => {
   try {
-    const refresh_token = CryptoJS.AES.decrypt(
-      localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME),
-      import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY,
-    ).toString(CryptoJS.enc.Utf8);
+    const refresh_token = decrypt_data(localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME), import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY);
     const access_token = await axios.post(request_auth_url + "/token/", {
       token: refresh_token,
     });
@@ -205,8 +184,30 @@ export const UpdateFavourites = async (favourites: string[]) => {
   }
 };
 
+export async function Checkout_payment(sandwich: any) {
+    try {
+        const refresh_token = decrypt_data(localStorage.getItem(import.meta.env.VITE_REFRESH_TOKEN_NAME), import.meta.env.VITE_TEMPORARY_TOKEN_HASHER_SECRET_KEY);
+        const access_token = await axios.post(request_auth_url + "/token/", {
+        token: refresh_token,
+        });
+    
+        const { data } = await axios.post(
+        request_sandwiches_url + "/sandwiches/checkout",
+        { order: sandwich },
+        {
+            headers: { Authorization: `Bearer ${access_token.data.ACCESS_TOKEN}` },
+        },
+        );
+        return data;
+    } catch (e: any) {
+        handle_err(e);
+        throw new Error("error");
+    }
+}
+
 
 async function handle_err(e: any) {
+    if (e === undefined || e.response === undefined) return;
 if (
       typeof e === "object" &&
       Object.keys(e.response).includes("data") &&
@@ -216,3 +217,18 @@ if (
       window.location.pathname = "/";
     }
 }
+
+function encrypt_data(data: any, key: string) {
+  return CryptoJS.AES.encrypt(
+    data,
+    key,
+  ).toString();
+}
+
+function decrypt_data(data: any, key: string) {
+    return CryptoJS.AES.decrypt(
+        data,
+        key,
+    ).toString(CryptoJS.enc.Utf8);
+}
+

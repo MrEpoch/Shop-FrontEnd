@@ -24,7 +24,8 @@ export default function Sandwich_card({ sandwich }: any) {
     <>
       {isLoading ? (
         <div>Loading...</div>
-      ) : (
+      ) : !error && (
+
         <div className="shop__main__products__products__container">
           {error && (
             <Alert

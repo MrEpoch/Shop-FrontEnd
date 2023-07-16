@@ -6,12 +6,15 @@ import { useCart } from "../../Cart_context";
 import { CartType, ThemeType } from "../../Types";
 import { useTheme } from "../../Theme_context";
 import { Alert } from "@mui/material";
+import { Checkout_payment } from "../../API_requests.ts";
 
 export default function Cart__main() {
   const [openModal, setOpenModal] = useState(false);
 
   const { theme } = useTheme() as ThemeType;
   const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { Get_cart_length, Get_cart } = useCart() as CartType;
 
@@ -23,8 +26,34 @@ export default function Cart__main() {
     }
   }
 
+  async function handle_checkout() {
+    setErrorMessage("");
+    setLoading(true);
+    try {
+        if (!(Get_cart_length() > 0)) {
+            setErrorMessage("Your cart is empty");
+        }
+        const response = await Checkout_payment(Get_cart());
+        console.log(response);
+        if (response.url) {
+          window.location.assign(response.url);
+        }
+        setLoading(false);
+    } catch (error) {
+        console.log(error);
+        setErrorMessage("Something went wrong");
+        setLoading(false);
+    }
+  }
+
   return (
     <div className="shop__cart_modal">
+      {loading ? (
+        <div className="loading__checkout">
+          <h1>Processing your order...</h1>
+        </div>
+      ) : (
+      <>
       <Badge
         onClick={() => Can_Open_modal()}
         style={{ padding: "5px" }}
@@ -83,10 +112,12 @@ export default function Cart__main() {
             <button onClick={() => setOpenModal(false)} className="button">
               Continue shopping
             </button>
-            <button className="button is-success">Proceed to pay</button>
+            <button onClick={handle_checkout} className="button is-success">Proceed to pay</button>
           </footer>
         </div>
       </div>
+      </>
+      )}
     </div>
   );
 }

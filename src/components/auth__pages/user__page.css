@@ -138,3 +138,8 @@
 .custom-shape-divider-top-1689418504 .shape-fill {
   fill: var(--main-color);
 }
+
+#dark__logout__svg {
+    color: var(--main-color) !important;
+    background-color: var(--dark-theme-light) !important;
+}

@@ -83,7 +83,7 @@
 
 .shop__main__products__products__container__product__image img:hover {
   cursor: pointer;
-  transform: scale(1.05) translateY(3px);
+  transform: scale(1.01);
   transition: all 0.3s ease-in-out;
 }
 

@@ -8,19 +8,23 @@ import EmailIcon from "@mui/icons-material/Email";
 import LanguageIcon from "@mui/icons-material/Language";
 import PhoneIcon from "@mui/icons-material/Phone";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../Theme_context";
+import { ThemeType } from "../../Types";
 
 export default function User__page() {
   const { account, favourites, handleLogout } = useAccount();
   const { sandwich } = useSandwich();
   const navigate = useNavigate();
+  const { theme } = useTheme() as ThemeType;
 
   return (
-    <section className="shop__user-page">
+    <section className={`shop__user-page ${theme ? "dark__theme__LIGHTER" : ""}`}>
       <div
         onClick={() => {
           handleLogout();
           navigate("/");
         }}
+        id={theme ? "dark__logout__svg" : ""}
         className="shop__user-page__logout"
       >
         <LogoutIcon />
