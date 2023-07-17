@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAccount } from "../../Account_context";
 import { useSandwich } from "../../Sandwich_context";
 import { useTheme } from "../../Theme_context";
-import { AccountContextType, CartType, ThemeType } from "../../Types";
+import { AccountContextType, CartType, SandwichContextType, ThemeType } from "../../Types";
 import { useCart } from "../../Cart_context";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
@@ -11,12 +11,14 @@ import Badge from "@mui/material/Badge";
 import Rating from "@mui/material/Rating";
 import Alert from "@mui/material/Alert";
 import React from "react";
+import { CircularProgress } from "@mui/material";
+import "./Main__products__shop.css";
 
 export default function Sandwich_card({ sandwich } : { sandwich: SandwichType[] }): React.JSX.Element {
   const { theme } = useTheme() as ThemeType;
 
   const { Add_to_cart } = useCart() as CartType;
-  const { error, isLoading } = useSandwich();
+  const { error, isLoading } = useSandwich() as SandwichContextType;
   const { loggedIn, favourites, mutate } = useAccount() as AccountContextType;
 
   const navigate = useNavigate();
@@ -24,7 +26,9 @@ export default function Sandwich_card({ sandwich } : { sandwich: SandwichType[] 
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
+        <div className="item_loader">
+            <CircularProgress />
+        </div>
       ) : (
         !error && (
           <div className="shop__main__products__products__container">

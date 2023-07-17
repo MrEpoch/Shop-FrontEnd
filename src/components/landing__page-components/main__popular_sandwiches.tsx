@@ -3,9 +3,9 @@ import { useSandwich } from "../../Sandwich_context";
 import { SandwichContextType, SandwichType } from "../../Types";
 import Sandwich_card from "../shop__page-components/sandwich-card";
 
-export default function Popular__sandwiches() {
+export default function Popular__sandwiches(): React.JSX.Element {
   const { sandwich } = useSandwich() as SandwichContextType;
-
+  
   Array.prototype.three_best = function () {
     return this.sort((a: SandwichType, b: SandwichType) => {
       return b.numReviews - a.numReviews;

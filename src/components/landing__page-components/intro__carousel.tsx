@@ -3,9 +3,9 @@ import Slide1 from "../../assets/sandwich-1.jpg";
 import Slide2 from "../../assets/sandwich-2.jpg";
 import Slide3 from "../../assets/sandwich-3.jpg";
 import "./intro__carousel.css";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
-export default function IntroCarousel() {
+export default function IntroCarousel(): React.JSX.Element {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   useEffect(() => {

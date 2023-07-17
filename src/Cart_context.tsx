@@ -20,8 +20,8 @@ export default function Cart_context({
     sandwichImage: string,
     sandwichPrice: string,
   ): Array<CartProductType> {
-    const newCart = [...cart];
-    const itemCheck = newCart.find(
+    const newCart: CartProductType[] = [...cart];
+    const itemCheck: CartProductType | undefined = newCart.find(
       (item: CartProductType) => item.id === sandwichId,
     );
     if (

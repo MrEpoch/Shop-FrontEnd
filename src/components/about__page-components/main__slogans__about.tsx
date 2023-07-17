@@ -2,8 +2,9 @@ import "./main__slogans__about.css";
 import Fresh from "../../assets/fresh__ingredients.png";
 import Care from "../../assets/shop__worker.png";
 import Classic from "../../assets/sandwich-styled.png";
+import React from "react";
 
-export default function Slogans() {
+export default function Slogans(): React.JSX.Element {
   return (
     <div className="about__slogans">
       <div className="about__slogans__info">

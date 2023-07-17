@@ -2,8 +2,9 @@ import ClearIcon from "@mui/icons-material/Clear";
 import "./payment__pages.css";
 import { useTheme } from "../../Theme_context";
 import { ThemeType } from "../../Types";
+import React from "react";
 
-export default function CancelPage() {
+export default function CancelPage(): React.JSX.Element {
   const { theme } = useTheme() as ThemeType;
 
   return (

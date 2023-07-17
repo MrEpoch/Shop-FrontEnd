@@ -18,7 +18,7 @@ const About__page = lazy(() => import("./components/about__page.tsx"));
 const Contact__page = lazy(() => import("./components/contact__page.tsx"));
 
 
-function PackPage({ children }: ChildrenProp) {
+function PackPage({ children }: ChildrenProp): React.JSX.Element {
   return (
     <>
       <Header__2 />
@@ -53,7 +53,7 @@ function Check_token({ children }: ChildrenProp) {
   }
 }
 
-export default function Router() {
+export default function Router(): React.JSX.Element {
   return (
     <Suspense
         fallback={

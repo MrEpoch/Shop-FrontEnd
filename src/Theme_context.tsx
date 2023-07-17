@@ -1,4 +1,4 @@
-import { useContext, useState, useMemo } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import { ChildrenProp } from "./Types";
 import { ThemeContext } from "./Context_definitions";
 
@@ -8,11 +8,11 @@ export function useTheme() {
   return value;
 }
 
-export default function Theme_context({ children }: ChildrenProp) {
+export default function Theme_context({ children }: ChildrenProp): React.JSX.Element {
   const [theme, setTheme] = useState<boolean>(false);
 
   useMemo(() => {
-    const NewTheme = localStorage.getItem(
+    const NewTheme: string | null = localStorage.getItem(
       import.meta.env.VITE_THEME_NAME
     );
     if (NewTheme) setTheme(JSON.parse(NewTheme));

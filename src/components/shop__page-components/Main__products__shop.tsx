@@ -1,12 +1,12 @@
 import "./Main__products__shop.css";
-import { QueryClient } from "react-query";
 import Sandwich_card from "./sandwich-card";
 import { useSandwich } from "../../Sandwich_context";
+import React from "react";
+import { SandwichContextType } from "../../Types";
 
-export const queryClient = new QueryClient();
 
-export default function Main__products() {
-  const { sandwich } = useSandwich();
+export default function Main__products(): React.JSX.Element {
+  const { sandwich } = useSandwich() as SandwichContextType;
 
   return (
     <div className="shop__main__products">

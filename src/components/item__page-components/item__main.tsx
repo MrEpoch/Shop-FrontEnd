@@ -1,29 +1,43 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSandwich } from "../../Sandwich_context";
 import React, { useMemo, useState } from "react";
 import { Button, Image, Stack } from "react-bootstrap";
 import "./item__main.css";
 import { useTheme } from "../../Theme_context";
-import { CartType, SandwichType, ThemeType } from "../../Types";
+import { CartType, SandwichContextType, SandwichType, ThemeType } from "../../Types";
 import { useCart } from "../../Cart_context";
+import { CircularProgress } from "@mui/material";
 
 export default function Item_main(): React.JSX.Element {
 
   const { id } = useParams();
-  const { sandwich } = useSandwich();
+  const { sandwich } = useSandwich() as SandwichContextType;
   const { theme } = useTheme() as ThemeType;
   const { Add_to_cart } = useCart() as CartType;
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(true);
 
-
-  const [current_sandwich, setCurrent_sandwich] = useState<SandwichType>(sandwich[0]);
+  const [current_sandwich, setCurrent_sandwich] = useState<SandwichType>({} as SandwichType);
 
   useMemo(() => {
+    setLoading(true);
     if (sandwich) {
-      setCurrent_sandwich(sandwich.find((item: SandwichType) => item.id === id));
+        const selected_sandwich = sandwich.find((item: SandwichType) => item.id === id);
+        if (!selected_sandwich) return navigate("/shop");
+        setLoading(false);
+        setCurrent_sandwich(selected_sandwich);
+    } else {
+        navigate("/shop");
     }
-  }, [sandwich, id]);
+  }, [sandwich, id, navigate]);
 
   return (
+  <>
+  {loading ? (
+    <div className="load_backdrop_normal">
+        <CircularProgress />
+    </div>
+    ) : (
     <Stack
       gap={3}
       className={`shop__item-grid ${
@@ -55,5 +69,7 @@ export default function Item_main(): React.JSX.Element {
         Add to cart
       </Button>
     </Stack>
+  )}
+  </>
   );
 }

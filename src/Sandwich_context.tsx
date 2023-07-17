@@ -1,5 +1,5 @@
 import "./App.css";
-import { useContext, useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { ChildrenProp, SandwichType } from "./Types";
 import { GetSandwiches } from "./API_requests";
 import { useQuery } from "react-query";
@@ -11,7 +11,7 @@ export function useSandwich() {
   return value;
 }
 
-export default function Sandwich_context({ children }: ChildrenProp) {
+export default function Sandwich_context({ children }: ChildrenProp): React.JSX.Element {
   const [sandwich, setSandwich] = useState<SandwichType[] | []>([]);
 
   const { isLoading, error, data } = useQuery<SandwichType[], Error>(

@@ -2,8 +2,9 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import "./payment__pages.css";
 import { useTheme } from "../../Theme_context";
 import { ThemeType } from "../../Types";
+import React from "react";
 
-export default function SuccessPage() {
+export default function SuccessPage(): React.JSX.Element {
   const { theme } = useTheme() as ThemeType;
 
   return (

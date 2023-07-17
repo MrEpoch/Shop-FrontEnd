@@ -4,8 +4,15 @@ import RestaurantIcon from "@mui/icons-material/Restaurant";
 import "./intro__expect_cards.css";
 import { useTheme } from "../../Theme_context";
 import { ThemeType } from "../../Types";
+import React from "react";
 
-const CardInfo = [
+interface CardInfo {
+    icon: React.ReactNode;
+    title: string;
+    description: string;
+}
+
+const CardInfo: Array<CardInfo> = [
   {
     icon: <EggIcon />,
     title: "Fresh Ingredients",
@@ -26,7 +33,7 @@ const CardInfo = [
   },
 ];
 
-export default function ExpectIntro() {
+export default function ExpectIntro(): React.JSX.Element {
   const { theme } = useTheme() as ThemeType;
 
   return (

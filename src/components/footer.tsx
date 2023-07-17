@@ -1,8 +1,9 @@
 import "./footer.css";
 import { useTheme } from "../Theme_context";
 import { ThemeType } from "../Types.tsx";
+import React from "react";
 
-export default function Footer() {
+export default function Footer(): React.JSX.Element {
   const { theme } = useTheme() as ThemeType;
 
   return (

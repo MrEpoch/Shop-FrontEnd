@@ -9,18 +9,42 @@ import LanguageIcon from "@mui/icons-material/Language";
 import PhoneIcon from "@mui/icons-material/Phone";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../Theme_context";
-import { AccountContextType, SandwichType, ThemeType } from "../../Types";
+import { AccountContextType, SandwichContextType, SandwichType, ThemeType } from "../../Types";
+import { Alert, CircularProgress } from "@mui/material";
 
 export default function User__page(): React.JSX.Element { 
-  const { account, favourites, handleLogout } = useAccount() as AccountContextType;
-  const { sandwich } = useSandwich();
+  const { account, favourites, handleLogout, isLoading, error } = useAccount() as AccountContextType;
+  const { sandwich } = useSandwich() as SandwichContextType;
   const navigate = useNavigate();
   const { theme } = useTheme() as ThemeType;
 
+  if (error) navigate("/");
+
   return (
+    <>
+    {isLoading ? (
+        <div className={`load_backdrop_normal ${theme ? "dark__theme__LIGHTER" : ""}`}>
+            <CircularProgress />
+        </div>
+        ) : (
+    
     <section
       className={`shop__user-page ${theme ? "dark__theme__LIGHTER" : ""}`}
     >
+        {error && (
+          <Alert
+            severity="error"
+            style={{
+              position: "fixed",
+              zIndex: 10,
+              right: "1%",
+              bottom: "0%",
+            }}
+            className="error__auth"
+          >
+            {error}
+          </Alert>
+        )}
       <div
         onClick={() => {
           handleLogout();
@@ -84,5 +108,7 @@ export default function User__page(): React.JSX.Element {
       </div>
       <div className="shop__user-page__orders"></div>
     </section>
+    )}
+    </>
   );
 }

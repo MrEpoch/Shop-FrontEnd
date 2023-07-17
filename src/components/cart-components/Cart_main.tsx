@@ -1,32 +1,34 @@
 import "./Cart_main.css";
 import { Badge } from "@mui/material";
 import CartIcon from "@mui/icons-material/ShoppingCart";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useCart } from "../../Cart_context";
 import { CartType, ThemeType } from "../../Types";
 import { useTheme } from "../../Theme_context";
 import { Alert } from "@mui/material";
 import { Checkout_payment } from "../../API_requests.ts";
 
-export default function Cart__main() {
-  const [openModal, setOpenModal] = useState(false);
+export default function Cart__main(): React.JSX.Element {
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const { theme } = useTheme() as ThemeType;
-  const [message, setMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const { Get_cart_length, Get_cart } = useCart() as CartType;
 
-  function Can_Open_modal() {
+  function Can_Open_modal(): void {
     if (Get_cart_length() > 0) {
       setOpenModal(true);
+      return;
     } else {
       setMessage("Your cart is empty");
+      return;
     }
   }
 
-  async function handle_checkout() {
+  async function handle_checkout(): Promise<void> {
     setErrorMessage("");
     setLoading(true);
     try {
@@ -38,9 +40,11 @@ export default function Cart__main() {
         window.location.assign(response.url);
       }
       setLoading(false);
+      return;
     } catch (error) {
       setErrorMessage("Something went wrong");
       setLoading(false);
+      return;
     }
   }
 
