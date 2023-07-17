@@ -2,7 +2,7 @@ import axios from "axios";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import CryptoJS from "crypto-js";
-import { SandwichType, userType } from "./Types";
+import { CartProductType, SandwichType, userType } from "./Types";
 
 export const request_auth_url = "http://localhost:4529/auth-user";
 
@@ -227,9 +227,13 @@ export const UpdateFavourites = async (favourites: string[]): Promise<void> => {
   }
 };
 
+type Checkout_response = {
+    url: string;
+}
+
 export async function Checkout_payment(
-  sandwich: SandwichType,
-): Promise<void | JSON> {
+  order: CartProductType[],
+): Promise<void | Checkout_response> {
   try {
     const local_token = localStorage.getItem(
       import.meta.env.VITE_REFRESH_TOKEN_NAME,
@@ -245,7 +249,7 @@ export async function Checkout_payment(
 
     const { data } = await axios.post(
       request_sandwiches_url + "/sandwiches/checkout",
-      { order: sandwich },
+      { order: order },
       {
         headers: { Authorization: `Bearer ${access_token.data.ACCESS_TOKEN}` },
       },

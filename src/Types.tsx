@@ -1,4 +1,4 @@
-import { UseMutationResult } from "react-query";
+import { MutateFunction } from "react-query";
 
 export interface ChildrenProp {
   children: React.ReactNode;
@@ -89,8 +89,14 @@ export type AccountContextType = {
   handleLogout: () => void;
   isLoading: boolean;
   favourites: string[];
-  mutate: UseMutationResult;
+  mutate: MutateFunction<userType, unknown, string, unknown>;
   Fill_user_account: (data: userType) => void;
   loggedIn: boolean;
   Update_account_favourites: (id: string) => Promise<void>;
 };
+
+export type SandwichContextType = {
+    sandwich: SandwichType[];
+    isLoading: boolean;
+    error: string;
+}

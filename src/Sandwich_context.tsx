@@ -1,10 +1,9 @@
 import "./App.css";
-import { createContext, useContext, useMemo, useState } from "react";
-import { ChildrenProp } from "./Types";
+import { useContext, useMemo, useState } from "react";
+import { ChildrenProp, SandwichType } from "./Types";
 import { GetSandwiches } from "./API_requests";
 import { useQuery } from "react-query";
-
-const SandwichContext = createContext<any>({});
+import { SandwichContext } from "./Context_definitions";
 
 export function useSandwich() {
   const value = useContext(SandwichContext);
@@ -13,16 +12,16 @@ export function useSandwich() {
 }
 
 export default function Sandwich_context({ children }: ChildrenProp) {
-  const [sandwich, setSandwich] = useState<any[]>([]);
+  const [sandwich, setSandwich] = useState<SandwichType[] | []>([]);
 
-  const { isLoading, error, data } = useQuery<any[], Error>(
+  const { isLoading, error, data } = useQuery<SandwichType[], Error>(
     "sandwiches",
     GetSandwiches,
     {
       staleTime: 1000 * 60 * 60,
     },
   );
-
+  
   useMemo(() => {
     if (data) {
       setSandwich(data);

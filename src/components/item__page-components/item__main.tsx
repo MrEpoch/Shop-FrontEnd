@@ -1,25 +1,27 @@
 import { useParams } from "react-router-dom";
 import { useSandwich } from "../../Sandwich_context";
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Button, Image, Stack } from "react-bootstrap";
 import "./item__main.css";
 import { useTheme } from "../../Theme_context";
-import { CartType, ThemeType } from "../../Types";
+import { CartType, SandwichType, ThemeType } from "../../Types";
 import { useCart } from "../../Cart_context";
 
-export default function Item_main() {
-  const [current_sandwich, setCurrent_sandwich] = useState<any>({});
+export default function Item_main(): React.JSX.Element {
 
   const { id } = useParams();
   const { sandwich } = useSandwich();
   const { theme } = useTheme() as ThemeType;
   const { Add_to_cart } = useCart() as CartType;
 
+
+  const [current_sandwich, setCurrent_sandwich] = useState<SandwichType>(sandwich[0]);
+
   useMemo(() => {
     if (sandwich) {
-      setCurrent_sandwich(sandwich.find((item: any) => item.id === id));
+      setCurrent_sandwich(sandwich.find((item: SandwichType) => item.id === id));
     }
-  }, [sandwich]);
+  }, [sandwich, id]);
 
   return (
     <Stack

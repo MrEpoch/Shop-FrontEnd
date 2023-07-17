@@ -34,13 +34,11 @@ export default function Cart__main() {
         setErrorMessage("Your cart is empty");
       }
       const response = await Checkout_payment(Get_cart());
-      console.log(response);
-      if (response.url) {
+      if (response && response.url) {
         window.location.assign(response.url);
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setErrorMessage("Something went wrong");
       setLoading(false);
     }
@@ -75,6 +73,21 @@ export default function Cart__main() {
               className="error__auth"
             >
               {message}
+            </Alert>
+          )}
+          {errorMessage.length > 0 && (
+            <Alert
+              severity="error"
+              onClose={() => setErrorMessage("")}
+              style={{
+                position: "fixed",
+                zIndex: 10,
+                right: "1%",
+                bottom: "0%",
+              }}
+              className="error__auth"
+            >
+              {errorMessage}
             </Alert>
           )}
           <div className={`modal ${openModal ? "is-active" : ""}`}>

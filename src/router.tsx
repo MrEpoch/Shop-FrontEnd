@@ -1,19 +1,22 @@
 import { Routes, Route, useParams, useNavigate } from "react-router-dom";
-import Landing__page from "./components/landing__page";
-import Footer from "./components/footer";
-import About__page from "./components/about__page";
-import Header__2 from "./components/Header__2";
-import Contact__page from "./components/contact__page";
-import { ChildrenProp, SandwichType } from "./Types";
-import Shop__page from "./components/shop__page";
+import { ChildrenProp, SandwichContextType, SandwichType } from "./Types";
 import { useSandwich } from "./Sandwich_context";
-import Shop_item__page from "./components/shop__item__page";
-import Login__page from "./components/auth__pages/log_in.tsx";
-import Sign_up from "./components/auth__pages/create_account.tsx";
-import React, { useEffect } from "react";
-import User__page from "./components/auth__pages/user__page.tsx";
-import CancelPage from "./components/payment_pages/cancel__page.tsx";
-import SuccessPage from "./components/payment_pages/success__page.tsx";
+import React, { Suspense, lazy, useEffect } from "react";
+import { CircularProgress } from "@mui/material";
+
+const User__page = lazy(() => import("./components/auth__pages/user__page.tsx"));
+const Login__page = lazy(() => import("./components/auth__pages/log_in.tsx"));
+const Sign_up = lazy(() => import("./components/auth__pages/create_account.tsx"));
+const CancelPage = lazy(() => import("./components/payment_pages/cancel__page.tsx"));
+const SuccessPage = lazy(() => import("./components/payment_pages/success__page.tsx"));
+const Shop_item__page = lazy(() => import("./components/shop__item__page.tsx"));
+const Shop__page = lazy(() => import("./components/shop__page.tsx"));
+const Landing__page = lazy(() => import("./components/landing__page.tsx"));
+const Footer = lazy(() => import("./components/footer.tsx"));
+const Header__2 = lazy(() => import("./components/Header__2.tsx"));
+const About__page = lazy(() => import("./components/about__page.tsx"));
+const Contact__page = lazy(() => import("./components/contact__page.tsx"));
+
 
 function PackPage({ children }: ChildrenProp) {
   return (
@@ -26,7 +29,7 @@ function PackPage({ children }: ChildrenProp) {
 }
 
 function Check_Validity_Page({ children }: ChildrenProp): React.JSX.Element {
-  const { sandwich } = useSandwich();
+  const { sandwich } = useSandwich() as SandwichContextType;
 
   const { id } = useParams();
 
@@ -52,7 +55,13 @@ function Check_token({ children }: ChildrenProp) {
 
 export default function Router() {
   return (
-    <>
+    <Suspense
+        fallback={
+        <div className="load_all">
+          <CircularProgress />
+        </div>
+        }
+    >
       <Routes>
         <Route
           path="/"
@@ -143,6 +152,6 @@ export default function Router() {
           }
         />
       </Routes>
-    </>
+    </Suspense>
   );
 }

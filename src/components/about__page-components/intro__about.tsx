@@ -3,8 +3,9 @@ import SandwichPicture from "../../assets/sandwich-4.png";
 import { useTheme } from "../../Theme_context";
 import { ThemeType } from "../../Types";
 import { Link } from "react-router-dom";
+import React from "react";
 
-export default function Intro__about() {
+export default function Intro__about(): React.JSX.Element {
   const { theme } = useTheme() as ThemeType;
 
   return (

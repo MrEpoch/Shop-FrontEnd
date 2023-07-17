@@ -29,7 +29,7 @@
   height: auto;
   background-color: #fff;
   display: flex;
-  color: #000 !important;
+  color: #000;
 }
 
 .login__page__form * {

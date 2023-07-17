@@ -1,10 +1,10 @@
 import "./main__popular_sandwiches.css";
 import { useSandwich } from "../../Sandwich_context";
-import { SandwichType } from "../../Types";
+import { SandwichContextType, SandwichType } from "../../Types";
 import Sandwich_card from "../shop__page-components/sandwich-card";
 
 export default function Popular__sandwiches() {
-  const { sandwich } = useSandwich();
+  const { sandwich } = useSandwich() as SandwichContextType;
 
   Array.prototype.three_best = function () {
     return this.sort((a: SandwichType, b: SandwichType) => {

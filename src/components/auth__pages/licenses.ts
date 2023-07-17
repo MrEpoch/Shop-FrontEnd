@@ -63,7 +63,7 @@ If you have any questions or concerns about these Terms, please contact us at [c
 By using the Site, you acknowledge that you have read, understood, and agreed to these Terms of Service.
 `;
 
-const two = `
+export const two = `
 
 Terms of Service
 
@@ -117,8 +117,7 @@ If you have any questions about these Terms, please contact us at [Insert contac
 By using the Fake Company website, you acknowledge that you have read, understood, and agree to these Terms of Service.
 `;
 
-const three = `
-Certainly! Here's the continuation:
+export const three = `
 
 Termination
 Fake Company reserves the right, in its sole discretion, to suspend or terminate your access to the Site at any time and for any reason, including but not limited to, a violation of these Terms. Upon termination, your right to access and use the Site will immediately cease, and any content or data associated with your account may be deleted.
@@ -146,7 +145,7 @@ By using the Fake Company website, you acknowledge that you have read, understoo
 Thank you for choosing Fake Company! Enjoy your experience on our site.
 `;
 
-const prOne = `
+export const prOne = `
     Privacy Policy
 
 Effective Date: [Insert Date]

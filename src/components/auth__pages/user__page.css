@@ -102,6 +102,7 @@
 
 .shop__user-page__favourites {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
@@ -122,8 +123,17 @@
   max-width: 200px;
   width: 100%;
   border-radius: 10px;
-
+  max-height: 80px;
   text-align: center;
+}
+
+.shop__user-page__favourites__container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+    height: auto;
 }
 
 .custom-shape-divider-top-1689418504 {

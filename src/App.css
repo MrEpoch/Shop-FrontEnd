@@ -14,3 +14,23 @@
 .clickable {
   cursor: pointer;
 }
+
+.load_all {
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+.load_backdrop {
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+}

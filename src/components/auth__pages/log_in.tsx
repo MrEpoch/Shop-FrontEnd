@@ -60,10 +60,11 @@ export default function LogIn(): React.JSX.Element {
     }
 
     try {
-      const user: userType = await LogInAPI(
+      const user: userType | void = await LogInAPI(
         nameRef.current.value,
         passwordRef.current.value,
       );
+      if (!user) throw new Error("Incorrect username or password");
       Fill_user_account(user);
       navigate("/user");
       return;
@@ -77,7 +78,7 @@ export default function LogIn(): React.JSX.Element {
   return (
     <>
       {loading ? (
-        <div className="loading__container">
+        <div className="load_all">
           <CircularProgress />
         </div>
       ) : (

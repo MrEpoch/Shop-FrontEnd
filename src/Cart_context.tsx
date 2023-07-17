@@ -1,8 +1,7 @@
 import "./App.css";
-import React, { createContext, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { CartProductType, CartType, ChildrenProp } from "./Types";
-
-const CartContext = createContext<CartType | object>({});
+import { CartContext } from "./Context_definitions";
 
 export function useCart() {
   const value = useContext(CartContext);

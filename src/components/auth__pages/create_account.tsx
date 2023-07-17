@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   CircularProgress,
   Alert,
@@ -11,9 +11,8 @@ import { CreateAccount } from "../../API_requests.ts";
 import { useAccount } from "../../Account_context.tsx";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../Theme_context.tsx";
-import { ThemeType } from "../../Types.tsx";
+import { AccountContextType, ThemeType } from "../../Types.tsx";
 
-import { isPossiblePhoneNumber } from "libphonenumber-js";
 import {
   postcodeValidator,
   postcodeValidatorExistsForCountry,
@@ -30,20 +29,21 @@ export default function Create_account() {
   const postalRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [country, setCountry] = useState<any>({});
+  const [country, setCountry] = useState<CountryType>(countries[0]);
+  const [isCountry, setIsCountry] = useState<boolean>(false);
 
   const [error, setError] = useState<string>("");
 
   const navigate = useNavigate();
 
-  const { Fill_user_account } = useAccount();
+  const { Fill_user_account } = useAccount() as AccountContextType;
   const { theme } = useTheme() as ThemeType;
 
-  async function New_account() {
+  async function New_account(): Promise<void> {
     setError("");
     setLoading(true);
 
-    if (Object.keys(country).length === 0) {
+    if (!isCountry) {
       setLoading(false);
       setError("Country cannot be empty");
       return;
@@ -124,13 +124,8 @@ export default function Create_account() {
       setError("Postal code cannot be empty");
       return;
     }
-    if (Object.keys(country).length === 0) {
-      setLoading(false);
-      setError("Country cannot be empty");
-      return;
-    }
 
-    if (isPossiblePhoneNumber(phoneRef.current.value, country.code) === false) {
+    if (phoneRef.current.value.length < 14) {
       setLoading(false);
       setError("Invalid phone number");
       return;
@@ -155,10 +150,10 @@ export default function Create_account() {
         postalRef.current.value,
         country.label,
       );
-      await Fill_user_account(user);
+      Fill_user_account(user);
       navigate("/");
+      return;
     } catch (e) {
-      console.log(e);
       setLoading(false);
       setError("Username already exists");
       return;
@@ -168,7 +163,7 @@ export default function Create_account() {
   return (
     <>
       {loading ? (
-        <div className="loading__container">
+        <div className="load_all">
           <CircularProgress />
         </div>
       ) : (
@@ -260,6 +255,7 @@ export default function Create_account() {
                 onChange={(_, newValue) => {
                   if (newValue) {
                     setCountry(newValue);
+                    setIsCountry(true);
                   }
                 }}
                 className="shop__acc-create__country-select"

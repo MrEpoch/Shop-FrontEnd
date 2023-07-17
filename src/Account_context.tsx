@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useState, useMemo } from "react";
-import { AccountContextType, ChildrenProp, OrderType, userType } from "./Types";
+import React, { useContext, useState, useMemo } from "react";
+import { ChildrenProp, OrderType, userType } from "./Types";
 import { GetAccount, LogOut, UpdateFavourites } from "./API_requests";
 import { useMutation, useQuery } from "react-query";
+import { AccountContext } from "./Context_definitions";
 
-const AccountContext = createContext<AccountContextType | object>({});
 
 export function useAccount() {
   const value = useContext(AccountContext);

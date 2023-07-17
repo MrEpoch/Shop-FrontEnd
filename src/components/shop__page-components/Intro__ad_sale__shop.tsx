@@ -1,9 +1,9 @@
 import "./Intro__ad_sale__shop.css";
-import Sandwich from "../../assets/sandwich-4.png";
 import { useTheme } from "../../Theme_context";
 import { ThemeType } from "../../Types";
+import React from "react";
 
-export default function Intro_ad() {
+export default function Intro_ad(): React.JSX.Element {
   const { theme } = useTheme() as ThemeType;
 
   return (

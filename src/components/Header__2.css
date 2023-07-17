@@ -4,7 +4,6 @@
 
 .navbar {
   padding: 15px;
-  display: grid;
   align-items: center;
 }
 
@@ -72,6 +71,15 @@
   max-width: 400px;
   display: flex;
   height: 20px;
+}
+
+.DARK_INPUTS_HEADER fieldset {
+    color: #ccc !important;
+    border-color: #ccc !important;
+}
+
+.DARK_INPUTS_HEADER input {
+  color: #ccc !important;
 }
 
 .DARK_INPUTS_HEADER label {

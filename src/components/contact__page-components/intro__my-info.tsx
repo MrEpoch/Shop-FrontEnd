@@ -1,10 +1,8 @@
 import "./intro__my-info.css";
-import { useTheme } from "../../Theme_context";
-import { ThemeType } from "../../Types";
 import Sandwich from "../../assets/sandwich-2.jpg";
+import React from "react";
 
-export default function My__info() {
-  const { theme } = useTheme() as ThemeType;
+export default function My__info(): React.JSX.Element {
 
   return (
     <div className="contact__intro__info">

@@ -1,22 +1,23 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/WoRZX.png";
 import LogoDark from "../assets/WoRZX-dark.png";
-import { useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import "./Header__2.css";
 import { useTheme } from "../Theme_context";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import NightlightIcon from "@mui/icons-material/Nightlight";
 import PersonIcon from "@mui/icons-material/Person";
-import { SandwichType, ThemeType } from "../Types";
-import Cart__main from "./cart-components/Cart_main";
-import { Autocomplete, TextField } from "@mui/material";
+import { SandwichContextType, SandwichType, ThemeType } from "../Types";
+import { Autocomplete, CircularProgress, TextField } from "@mui/material";
 import { useSandwich } from "../Sandwich_context";
 
-export default function Header__2() {
+const Cart_Modal = lazy(() => import("./cart-components/Cart_main"));
+
+export default function Header__2(): React.JSX.Element {
   const { theme, setTheme } = useTheme() as ThemeType;
 
   const [shortHeader, setShortHeader] = useState<boolean>(false);
-  const { sandwich } = useSandwich();
+  const { sandwich } = useSandwich() as SandwichContextType;
 
   return (
     <nav
@@ -120,8 +121,8 @@ export default function Header__2() {
               <Autocomplete
                 freeSolo
                 id="sandwich_search_bar"
-                getOptionLabel={(option: any) => option.name}
-                renderOption={(_, option: any) => (
+                getOptionLabel={(option: SandwichType | string) => typeof option === "object" ? option.name : option}
+                renderOption={(_, option: SandwichType) => (
                   <Link
                     key={option.name}
                     to={`/shop/${option.id}`}
@@ -152,7 +153,12 @@ export default function Header__2() {
             <PersonIcon className="clickable" />
           </Link>
           <div className={`navbar-item ${theme ? "dark__theme" : ""}`}>
-            <Cart__main />
+            <Suspense fallback={
+            <div className="load_backdrop">
+                <CircularProgress />
+            </div>}>
+                <Cart_Modal />
+            </Suspense>
           </div>
         </div>
       </div>
