@@ -82,7 +82,7 @@ export default function Account_context({
   }
 
   useMemo(() => {
-    if (Object.keys(account).length > 0) {
+    if (Object.keys(account).length > 3) {
       setLoggedIn(true);
       setFavourites(account.favouritesId);
       setOrders(account.orders);
